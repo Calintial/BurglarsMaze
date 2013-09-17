@@ -112,16 +112,16 @@ void draw_tilemap(void) {
 	
 	y=0;
 	for(x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
+	      cpc_SetTile(x,y,2);
 	}
 	for(y=0;y<20;y++) {
 		for (x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
+	      cpc_SetTile(x,y,2);
 		}
 	}
 	y=15;
 	for (x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
+	      cpc_SetTile(x,y,2);
 	}
 }
 
