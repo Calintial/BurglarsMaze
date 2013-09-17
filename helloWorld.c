@@ -91,16 +91,16 @@ void draw_tilemap(void) {
 	//Tile Map configuration file: TileMapConf.asm
 	
 	y=0;
-	for(x=0; x<32;x++) {
+	for(x=0; x<40;x++) {
 	      cpc_SetTile(x,y,3);
 	}
-	for(y=1;y<15;y++) {
-		for (x=0; x<32;x++) {
+	for(y=0;y<20;y++) {
+		for (x=0; x<40;x++) {
 	      cpc_SetTile(x,y,3);
 		}
 	}
 	y=15;
-	for (x=0; x<32;x++) {
+	for (x=0; x<40;x++) {
 	      cpc_SetTile(x,y,3);
 	}
 }
