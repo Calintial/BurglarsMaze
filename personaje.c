@@ -1,5 +1,7 @@
 #include "lib/cpcrslib.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 extern unsigned char moneda[];
 extern unsigned char bomba[];
@@ -159,77 +161,77 @@ struct sprite {				// estructura mínima para usar la librería de dibujar sprit
    	unsigned char move;	// si NO es 0, el sprite se mueve.	
    							// Si es 8 en cuanto se mueva se pone a 0 y ya no se mueve más hasta nueva orden.
    	
-};
-struct sprite sprite_enemigo,sprite_bomba,sprite_enemigo2;
+   };
+   struct sprite sprite_enemigo,sprite_bomba,sprite_enemigo2;
 
-void draw_tilemap(void) {
-	unsigned char x,y;
+   void draw_tilemap(void) {
+   	unsigned char x,y;
 	//set the tiles of the map. In this example, the tile map is 32x16 tile
 	//Tile Map configuration file: TileMapConf.asm
-	
-	y=0;
-	for(x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
-	}
-	for(y=0;y<20;y++) {
-		for (x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
-		}
-	}
-	y=15;
-	for (x=0; x<40;x++) {
-	      cpc_SetTile(x,y,3);
-	}
-}
 
-main(){
+   	y=0;
+   	for(x=0; x<40;x++) {
+   		cpc_SetTile(x,y,3);
+   	}
+   	for(y=0;y<20;y++) {
+   		for (x=0; x<40;x++) {
+   			cpc_SetTile(x,y,3);
+   		}
+   	}
+   	y=15;
+   	for (x=0; x<40;x++) {
+   		cpc_SetTile(x,y,3);
+   	}
+   }
 
-	cpc_SetModo(0);
+   main(){
 
-	cpc_DisableFirmware();
+   	cpc_SetModo(0);
+
+   	cpc_DisableFirmware();
 
 	/*Init Sprites*/
-	sprite_enemigo.sp1 = malo14x16;
-	sprite_enemigo.sp0 = malo14x16;
+   	sprite_enemigo.sp1 = malo14x16;
+   	sprite_enemigo.sp0 = malo14x16;
 
-	sprite_enemigo.ox=50;
-	sprite_enemigo.oy=70; 	
-	sprite_enemigo.cx=50;
-	sprite_enemigo.cy=70; 
-	sprite_enemigo.move=0;
+   	sprite_enemigo.ox=50;
+   	sprite_enemigo.oy=70; 	
+   	sprite_enemigo.cx=50;
+   	sprite_enemigo.cy=70; 
+   	sprite_enemigo.move=0;
 
-	cpc_SuperbufferAddress(sprite_enemigo);
+   	cpc_SuperbufferAddress(sprite_enemigo);
 
-	sprite_bomba.sp1 = bomba;
-	sprite_bomba.sp0 = bomba;
+   	sprite_bomba.sp1 = bomba;
+   	sprite_bomba.sp0 = bomba;
 
-	sprite_bomba.ox=60;
-	sprite_bomba.oy=50; 	
-	sprite_bomba.cx=60;
-	sprite_bomba.cy=50; 
-	sprite_bomba.move=0;
+   	sprite_bomba.ox=60;
+   	sprite_bomba.oy=50; 	
+   	sprite_bomba.cx=60;
+   	sprite_bomba.cy=50; 
+   	sprite_bomba.move=0;
 
-	cpc_SuperbufferAddress(sprite_bomba);
+   	cpc_SuperbufferAddress(sprite_bomba);
 
-	sprite_enemigo2.sp1 = malo24x16;
-	sprite_enemigo2.sp0 = malo24x16;
+   	sprite_enemigo2.sp1 = malo24x16;
+   	sprite_enemigo2.sp0 = malo24x16;
 
-	sprite_enemigo2.ox=40;
-	sprite_enemigo2.oy=40; 	
-	sprite_enemigo2.cx=40;
-	sprite_enemigo2.cy=40; 
-	sprite_enemigo2.move=0;
-	cpc_SuperbufferAddress(sprite_enemigo2);
+   	sprite_enemigo2.ox=40;
+   	sprite_enemigo2.oy=40; 	
+   	sprite_enemigo2.cx=40;
+   	sprite_enemigo2.cy=40; 
+   	sprite_enemigo2.move=0;
+   	cpc_SuperbufferAddress(sprite_enemigo2);
 
-	draw_tilemap();
+   	draw_tilemap();
 	cpc_ShowTileMap(0);		//Show entire tile map in the screen
 
 	while(1)
 	{
 
-		if (cpc_TestKey(0)==1 && sprite_enemigo.cx<60){
-		 cpc_SpUpdX(sprite_enemigo,1)
-		 	sprite_enemigo.sp1 = malo14x16;
+		/*if (cpc_TestKey(0)==1 && sprite_enemigo.cx<60){
+			cpc_SpUpdX(sprite_enemigo,1)
+			sprite_enemigo.sp1 = malo14x16;
 			sprite_enemigo.sp0 = malo14x16;
 		};
 
@@ -239,12 +241,42 @@ main(){
 			sprite_enemigo.sp0 = malo14x16reves;
 		};
 		if (cpc_TestKey(2)==1 && sprite_enemigo.cy>0){
-		 cpc_SpUpdY(sprite_enemigo,-1)
+			cpc_SpUpdY(sprite_enemigo,-1)
 		};			
 		if (cpc_TestKey(3)==1 && sprite_enemigo.cy<112){
-		 cpc_SpUpdY(sprite_enemigo,1)
+			cpc_SpUpdY(sprite_enemigo,1)
 		};
+		*/
+		int movimiento_random=0; 
+		int movimiento_siguiente=0;
+		
+		do{
+			movimiento_random = random(4);			
+			if(moverEnemigo(movimiento_random,sprite_enemigo,sprite_bomba)==1){
+					
+					if (movimiento_random==1 && sprite_enemigo.cx<60){
+						cpc_SpUpdX(sprite_enemigo,1)
+						sprite_enemigo.sp1 = malo14x16;
+						sprite_enemigo.sp0 = malo14x16;
+						movimiento_siguiente=1;
+					}
 
+					if (movimiento_random==2 ){ 
+						cpc_SpUpdX(sprite_enemigo,-1)
+						sprite_enemigo.sp1 = malo14x16reves;
+						sprite_enemigo.sp0 = malo14x16reves;
+						movimiento_siguiente=1;
+					}
+					if (movimiento_random==3 ){
+						cpc_SpUpdY(sprite_enemigo,-1)
+						movimiento_siguiente=1;
+					}			
+					if (movimiento_random==4 ){
+						cpc_SpUpdY(sprite_enemigo,1)
+						movimiento_siguiente=1;
+					}
+			}
+		}while(movimiento_siguiente==0);
 
 		updateSprites();
 		if (cpc_CollSp(sprite_enemigo,sprite_bomba))
@@ -258,7 +290,40 @@ main(){
 	}
 
 }
+int moverEnemigo(int mov,struct sprite sprite_enemigo, struct sprite sprite_bomba){
 
+	if(mov==1){
+		if(sprite_enemigo.ox+1!=sprite_bomba.ox && sprite_enemigo.oy!=sprite_bomba.oy){
+			return 1;
+		}
+		return 0;
+	}
+	else if(mov==2){
+		if(sprite_enemigo.ox-1!=sprite_bomba.ox && sprite_enemigo.oy!=sprite_bomba.oy){
+			return 1;
+		}
+			return 0;
+	}
+	else if(mov==3){
+		if(sprite_enemigo.ox!=sprite_bomba.ox && sprite_enemigo.oy+1!=sprite_bomba.oy){
+			return 1;
+		}
+		return 0;
+	}
+	else{
+		if(sprite_enemigo.ox!=sprite_bomba.ox && sprite_enemigo.oy-1!=sprite_bomba.oy){
+			return 1;
+		}
+		return 0;
+	}
+}
+
+int random(int max) {
+	int r=0;	
+	r= (rand() %max );
+	return r;
+
+}
 void updateSprites(void)
 {
 	cpc_ResetTouchedTiles();
