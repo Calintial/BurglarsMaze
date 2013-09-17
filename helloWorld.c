@@ -4,6 +4,8 @@
 extern unsigned char moneda[];
 extern unsigned char bomba[];
 extern unsigned char explosion[];
+extern unsigned char malo14x8[];
+extern unsigned char malo14x16[];
 
 
 // Compiling:
@@ -20,7 +22,34 @@ defb $00,$01,$02,$00
 defb $00,$01,$02,$00
 defb $00,$04,$08,$00
 defb $00,$50,$A0,$00
-
+._malo14x8
+defb 2,8
+defb $3F,$00
+defb $3F,$2A
+defb $DA,$00
+defb $CF,$00
+defb $0F,$F0
+defb $0F,$A0
+defb $0C,$00
+defb $F0,$00
+._malo14x16
+defb 2,16
+defb $0C,$08
+defb $0C,$08
+defb $0C,$0C
+defb $CF,$A0
+defb $CF,$8A
+defb $CF,$8A
+defb $03,$02
+defb $03,$02
+defb $F0,$F0
+defb $52,$02
+defb $03,$02
+defb $03,$02
+defb $03,$02
+defb $0F,$0A
+defb $0F,$0A
+defb $A0,$A0
 ._bomba
 defb 4,16
 defb $00,$00,$FF,$AA
@@ -103,8 +132,8 @@ main(){
 	cpc_DisableFirmware();
 
 	/*Init Sprites*/
-	sprite_moneda.sp1 = moneda;
-	sprite_moneda.sp0 = moneda;
+	sprite_moneda.sp1 = malo14x16;
+	sprite_moneda.sp0 = malo14x16;
 
 	sprite_moneda.ox=50;
 	sprite_moneda.oy=70; 	
