@@ -1,7 +1,6 @@
 #include "lib/cpcrslib.h"
 #include <stdio.h>
 
-
 extern unsigned char moneda[];
 extern unsigned char bomba[];
 extern unsigned char explosion[];
@@ -12,23 +11,15 @@ extern unsigned char explosion[];
 
 #asm
 ._moneda
-defb 4,16
-defb $00,$40,$80,$00
-defb $00,$C0,$C0,$00
-defb $00,$C0,$C0,$00
-defb $40,$C0,$C0,$80
-defb $40,$30,$C0,$80
-defb $C0,$30,$C0,$C0
-defb $90,$30,$C0,$C0
-defb $90,$60,$C0,$C0
-defb $C0,$C0,$C0,$C0
-defb $C0,$C0,$C0,$C0
-defb $C0,$C0,$C0,$60
-defb $C0,$C0,$90,$60
-defb $40,$C0,$30,$80
-defb $40,$C0,$60,$80
-defb $00,$C0,$C0,$00
-defb $00,$40,$80,$00
+defb 4,8
+defb $00,$15,$2A,$00
+defb $00,$15,$3F,$00
+defb $00,$45,$A0,$00
+defb $00,$45,$8A,$00
+defb $00,$01,$02,$00
+defb $00,$01,$02,$00
+defb $00,$04,$08,$00
+defb $00,$50,$A0,$00
 
 ._bomba
 defb 4,16
