@@ -1,0 +1,4 @@
+*.bin
+*.dsk
+*.cpc
+zcc_opt.def
