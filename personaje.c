@@ -11,6 +11,9 @@ extern unsigned char malo14x16[];
 extern unsigned char malo14x16reves[];
 extern unsigned char malo24x16[];
 extern unsigned char malo24x16reves[];
+
+
+
 // Compiling:
 // zcc +cpc  TileMapConf.asm -create-app -make-app -O3 -unsigned -o uno.bin code.c -lcpcrslib -lndos -zorg=16384
 
@@ -184,7 +187,123 @@ struct sprite {				// estructura mínima para usar la librería de dibujar sprit
    	}
    }
 
+   /*for(i=0;i<20;i++){
+   	if(i==0|i==19){
+   		matriz[i]=mv2;
+   	}
+   	else{
+   		matriz[i]=mv;
+   	}
+   }*/
+/*
+   for(i=0;i<40;i++){
+
+   		matriz[i]
+   		matriz[i][0]=1;
+   		matriz[i][39]=1;
+   }
+   for(i=0;i<20;i++){
+   		matriz[0][i]=1;
+   		matriz[39][i]=1;
+   }*/
+   void rellenar_matriz(int  matriz[],int mv[], int mv2[]){
+
+   }
    main(){
+
+   	int *matriz[20];
+	int mv[40];
+	int mv2[40];
+	int mv3[40];
+	int mv4[40];
+	int mv5[40];
+	int mv6[40];
+	int mv7[40];
+	int mv8[40];
+	int mv9[40];
+	int mv10[40];
+	int mv11[40];
+	int mv12[40];
+	int mv13[40];
+	int mv14[40];
+	int mv15[40];
+	int mv16[40];
+	int mv17[40];
+	int mv18[40];
+	int mv19[40];
+	int mv20[40];
+
+
+	int i=0;
+   	
+   	for(i=0;i<40;i++){
+   		
+   		if(i==0|i==39){
+   			mv2[i]=1;
+   			mv3[i]=1;
+   			mv4[i]=1;
+   			mv5[i]=1;
+   			mv6[i]=1;
+   			mv7[i]=1;
+   			mv8[i]=1;
+   			mv9[i]=1;
+   			mv10[i]=1;
+   			mv11[i]=1;
+   			mv12[i]=1;
+   			mv13[i]=1;
+   			mv14[i]=1;
+   			mv15[i]=1;
+   			mv16[i]=1;
+   			mv17[i]=1;
+   			mv18[i]=1;
+   			mv19[i]=1;
+   			mv20[i]=1;
+
+   		}
+   		else{
+   			mv2[i]=0;
+   			mv3[i]=0;
+   			mv4[i]=0;
+   			mv5[i]=0;
+   			mv6[i]=0;
+   			mv7[i]=0;
+   			mv8[i]=0;
+   			mv9[i]=0;
+   			mv10[i]=0;
+   			mv11[i]=0;
+   			mv12[i]=0;
+   			mv13[i]=0;
+   			mv14[i]=0;
+   			mv15[i]=0;
+   			mv16[i]=0;
+   			mv17[i]=0;
+   			mv18[i]=0;
+   			mv19[i]=0;
+   			mv20[i]=0;
+   		}
+   		mv[i]=1;
+   	}
+   
+   	matriz[0]=mv;
+   	matriz[1]=mv2;
+   	matriz[2]=mv3;
+   	matriz[3]=mv4;
+   	matriz[4]=mv5;
+   	matriz[5]=mv6;
+   	matriz[6]=mv7;
+   	matriz[7]=mv8;
+   	matriz[8]=mv9;
+   	matriz[9]=mv10;
+   	matriz[10]=mv11;
+   	matriz[11]=mv12;
+   	matriz[12]=mv13;
+   	matriz[13]=mv14;
+   	matriz[14]=mv15;
+   	matriz[15]=mv16;
+   	matriz[16]=mv17;
+   	matriz[17]=mv18;
+   	matriz[18]=mv19;
+   	matriz[19]=mv20;
 
    	cpc_SetModo(0);
 
@@ -229,24 +348,7 @@ struct sprite {				// estructura mínima para usar la librería de dibujar sprit
 	while(1)
 	{
 
-		/*if (cpc_TestKey(0)==1 && sprite_enemigo.cx<60){
-			cpc_SpUpdX(sprite_enemigo,1)
-			sprite_enemigo.sp1 = malo14x16;
-			sprite_enemigo.sp0 = malo14x16;
-		};
 
-		if (cpc_TestKey(1)==1 && sprite_enemigo.cx>0){ 
-			cpc_SpUpdX(sprite_enemigo,-1)
-			sprite_enemigo.sp1 = malo14x16reves;
-			sprite_enemigo.sp0 = malo14x16reves;
-		};
-		if (cpc_TestKey(2)==1 && sprite_enemigo.cy>0){
-			cpc_SpUpdY(sprite_enemigo,-1)
-		};			
-		if (cpc_TestKey(3)==1 && sprite_enemigo.cy<112){
-			cpc_SpUpdY(sprite_enemigo,1)
-		};
-		*/
 		int movimiento_random=0; 
 		int movimiento_siguiente=0;
 		
