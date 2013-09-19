@@ -85,30 +85,99 @@ struct sprite {				// estructura mínima para usar la librería de dibujar sprit
 };
 struct sprite sprite_moneda,sprite_bomba;
 
-void draw_tilemap(void) {
+void draw_tilemap(int *matrix[]) {
 	unsigned char x,y;
 	//set the tiles of the map. In this example, the tile map is 32x16 tile
 	//Tile Map configuration file: TileMapConf.asm
 	
 	y=0;
 	for(x=0; x<40;x++) {
-	    cpc_SetTile(x,y,4);
+		if (matrix[x][y] == 0)
+		{
+			cpc_SetTile(x,y,5);
+		}else{
+			cpc_SetTile(x,y,4);
+		}
+	    
 	}
 	for(y=1;y<19;y++) {
-		cpc_SetTile(0,y,4);
+		if (matrix[x][y] == 0)
+		{
+			cpc_SetTile(x,y,5);
+		}else{
+			cpc_SetTile(x,y,4);
+		}
 		for (x = 1; x < 39; x++)
 		{
-			cpc_SetTile(x,y,3);
+			if (matrix[x][y] == 0)
+			{
+				cpc_SetTile(x,y,3);
+			}else{
+				cpc_SetTile(x,y,2);
+			}
 		}
-		cpc_SetTile(39,y,4);
+		if (matrix[x][y] == 0)
+		{
+			cpc_SetTile(x,y,5);
+		}else{
+			cpc_SetTile(x,y,4);
+		}
 	}
 	
 	for (x=0; x<40;x++) {
-	    cpc_SetTile(x,y,4);
+	    if (matrix[x][y] == 0)
+		{
+			cpc_SetTile(x,y,5);
+		}else{
+			cpc_SetTile(x,y,4);
+		}
 	}
+
 }
 
 main(){
+	int *matrix[20];
+	int linea0[40];
+	int linea1[40];
+	int linea2[40];
+	int linea3[40];
+	int linea4[40];
+	int linea5[40];
+	int linea6[40];
+	int linea7[40];
+	int linea8[40];
+	int linea9[40];
+	int linea10[40];
+	int linea11[40];
+	int linea12[40];
+	int linea13[40];
+	int linea14[40];
+	int linea15[40];
+	int linea16[40];
+	int linea17[40];
+	int linea18[40];
+	int linea19[40];
+
+	matrix[0] = linea0;
+	matrix[0] = linea1;
+	matrix[0] = linea2;
+	matrix[0] = linea3;
+	matrix[0] = linea4;
+	matrix[0] = linea5;
+	matrix[0] = linea6;
+	matrix[0] = linea7;
+	matrix[0] = linea8;
+	matrix[0] = linea9;
+	matrix[0] = linea10;
+	matrix[0] = linea11;
+	matrix[0] = linea12;
+	matrix[0] = linea13;
+	matrix[0] = linea14;
+	matrix[0] = linea15;
+	matrix[0] = linea16;
+	matrix[0] = linea17;
+	matrix[0] = linea18;
+	matrix[0] = linea19;
 
 	cpc_SetModo(0);
 
@@ -138,7 +207,7 @@ main(){
 
 	cpc_SuperbufferAddress(sprite_bomba);
 
-	draw_tilemap();
+	draw_tilemap(matrix);
 	cpc_ShowTileMap(0);		//Show entire tile map in the screen
 
 	while(1)

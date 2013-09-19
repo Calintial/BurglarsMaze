@@ -139,3 +139,13 @@ defb $00,$08
 defb $04,$00
 defb $04,$00
 defb $80,$40
+
+;pared
+defb $FF,$D7
+defb $FF,$D7
+defb $FF,$D7
+defb $C3,$C3
+defb $FF,$EB
+defb $FF,$EB
+defb $FF,$EB
+defb $C3,$C3
