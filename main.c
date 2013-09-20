@@ -1,4 +1,4 @@
-#include "lib/cpcrslib.h"
+#include <cpcrslib.h>
 #include "keyboard.h"
 #include "sprites.h"
 #include <stdio.h>
