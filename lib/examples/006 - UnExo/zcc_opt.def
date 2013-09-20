@@ -1,9 +1,0 @@
-	DEFINE DEFINED_myzorg
-	defc myzorg = 16384
-
-IF !NEED_appstartup
-	DEFINE	NEED_appstartup
-	defc reqpag = 32
-	defc NEED_expanded = 1
-ENDIF
-

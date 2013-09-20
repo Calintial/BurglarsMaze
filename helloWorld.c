@@ -1,4 +1,4 @@
-#include "lib/cpcrslib.h"
+#include <cpcrslib.h>
 #include <stdio.h>
 
 

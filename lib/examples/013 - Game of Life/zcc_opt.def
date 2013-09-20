@@ -1,7 +1,0 @@
-
-IF !DEFINED_ANSIstdio
-	defc	DEFINED_ANSIstdio = 1
-ENDIF
-
-	DEFINE DEFINED_myzorg
-	defc myzorg = 16384
