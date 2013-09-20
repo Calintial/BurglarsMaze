@@ -5,7 +5,8 @@
 extern unsigned char moneda[];
 extern unsigned char bomba[];
 extern unsigned char explosion[];
-
+#define WIDTH 40
+#define HEIGHT 20
 
 // Compiling:
 // zcc +cpc  TileMapConf.asm -create-app -make-app -O3 -unsigned -o uno.bin code.c -lcpcrslib -lndos -zorg=16384
@@ -89,95 +90,112 @@ void draw_tilemap(int *matrix[]) {
 	unsigned char x,y;
 	//set the tiles of the map. In this example, the tile map is 32x16 tile
 	//Tile Map configuration file: TileMapConf.asm
-	
+
+
+	// Borde superior
 	y=0;
-	for(x=0; x<40;x++) {
-		if (matrix[x][y] == 0)
-		{
-			cpc_SetTile(x,y,5);
-		}else{
-			cpc_SetTile(x,y,4);
-		}
-	    
+	for(x=0; x<WIDTH;x++) {
+	    cpc_SetTile(x,y,5);
+										    if (matrix[x][y] == 99)
+										    {
+										    	cpc_SetTile(x,y,4);
+										    }
 	}
-	for(y=1;y<19;y++) {
-		if (matrix[x][y] == 0)
-		{
-			cpc_SetTile(x,y,5);
-		}else{
-			cpc_SetTile(x,y,4);
+	// Filas de en medio
+	for(y=1;y<HEIGHT-1;y++) {
+		x=0;
+		cpc_SetTile(x,y,5);
+											if (matrix[x][y] == 99)
+										    {
+										    	cpc_SetTile(x,y,4);
+										    }
+		for (x=1; x<WIDTH-1;x++) {
+	      	cpc_SetTile(x,y,3);
+									      	if (matrix[x][y] == 99)
+										    {
+										    	cpc_SetTile(x,y,4);
+										    }
 		}
-		for (x = 1; x < 39; x++)
-		{
-			if (matrix[x][y] == 0)
-			{
-				cpc_SetTile(x,y,3);
-			}else{
-				cpc_SetTile(x,y,2);
-			}
-		}
-		if (matrix[x][y] == 0)
-		{
-			cpc_SetTile(x,y,5);
-		}else{
-			cpc_SetTile(x,y,4);
-		}
+		cpc_SetTile(x,y,5);
+											if (matrix[x][y] == 99)
+										    {
+										    	cpc_SetTile(x,y,4);
+										    }
 	}
-	
+	// Borde inferior
+	//y=19;
 	for (x=0; x<40;x++) {
-	    if (matrix[x][y] == 0)
-		{
-			cpc_SetTile(x,y,5);
-		}else{
-			cpc_SetTile(x,y,4);
-		}
+	    cpc_SetTile(x,y,5);
+	    									if (matrix[x][y] == 99)
+										    {
+										    	cpc_SetTile(x,y,4);
+										    }
 	}
 
 }
 
 main(){
-	int *matrix[20];
-	int linea0[40];
-	int linea1[40];
-	int linea2[40];
-	int linea3[40];
-	int linea4[40];
-	int linea5[40];
-	int linea6[40];
-	int linea7[40];
-	int linea8[40];
-	int linea9[40];
-	int linea10[40];
-	int linea11[40];
-	int linea12[40];
-	int linea13[40];
-	int linea14[40];
-	int linea15[40];
-	int linea16[40];
-	int linea17[40];
-	int linea18[40];
-	int linea19[40];
+	//char cadena_puntos[11];
+	int i,j;
+	int *matrix[HEIGHT];
+	int linea0[WIDTH];
+	int linea1[WIDTH];
+	int linea2[WIDTH];
+	int linea3[WIDTH];
+	int linea4[WIDTH];
+	int linea5[WIDTH];
+	int linea6[WIDTH];
+	int linea7[WIDTH];
+	int linea8[WIDTH];
+	int linea9[WIDTH];
+	int linea10[WIDTH];
+	int linea11[WIDTH];
+	int linea12[WIDTH];
+	int linea13[WIDTH];
+	int linea14[WIDTH];
+	int linea15[WIDTH];
+	int linea16[WIDTH];
+	int linea17[WIDTH];
+	int linea18[WIDTH];
+	int linea19[WIDTH];
 
 	matrix[0] = linea0;
-	matrix[0] = linea1;
-	matrix[0] = linea2;
-	matrix[0] = linea3;
-	matrix[0] = linea4;
-	matrix[0] = linea5;
-	matrix[0] = linea6;
-	matrix[0] = linea7;
-	matrix[0] = linea8;
-	matrix[0] = linea9;
-	matrix[0] = linea10;
-	matrix[0] = linea11;
-	matrix[0] = linea12;
-	matrix[0] = linea13;
-	matrix[0] = linea14;
-	matrix[0] = linea15;
-	matrix[0] = linea16;
-	matrix[0] = linea17;
-	matrix[0] = linea18;
-	matrix[0] = linea19;
+	matrix[1] = linea1;
+	matrix[2] = linea2;
+	matrix[3] = linea3;
+	matrix[4] = linea4;
+	matrix[5] = linea5;
+	matrix[6] = linea6;
+	matrix[7] = linea7;
+	matrix[8] = linea8;
+	matrix[9] = linea9;
+	matrix[10] = linea10;
+	matrix[11] = linea11;
+	matrix[12] = linea12;
+	matrix[13] = linea13;
+	matrix[14] = linea14;
+	matrix[15] = linea15;
+	matrix[16] = linea16;
+	matrix[17] = linea17;
+	matrix[18] = linea18;
+	matrix[19] = linea19;
+
+	matrix[0][0] = 99;
+	matrix[0][2] = 99;
+	matrix[2][0] = 99;
+	matrix[2][2] = 99;
+
+	
+	for (i = 0; i < WIDTH; i++)
+	{
+		// for (j = 0; j < WIDTH; j++)
+		// {
+			matrix[i][10]=99;
+		//}
+	}
+	//sprintf(cadena_puntos,"BIEN\0");
+	//matrix[21][10]=99;
+	//printPuntos(matrix[21][10]);
 
 	cpc_SetModo(0);
 
