@@ -313,10 +313,10 @@ struct sprite {				// estructura mínima para usar la librería de dibujar sprit
    	sprite_enemigo.sp1 = malo14x16;
    	sprite_enemigo.sp0 = malo14x16;
 
-   	sprite_enemigo.ox=50;
-   	sprite_enemigo.oy=70; 	
-   	sprite_enemigo.cx=50;
-   	sprite_enemigo.cy=70; 
+   	sprite_enemigo.ox=01;
+   	sprite_enemigo.oy=01; 	
+   	sprite_enemigo.cx=10;
+   	sprite_enemigo.cy=10; 
    	sprite_enemigo.move=0;
 
    	cpc_SuperbufferAddress(sprite_enemigo);
