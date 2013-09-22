@@ -53,10 +53,7 @@ main(){
 				if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1) sp1.pX--;
 				if(IsKeyPressed(Key_S) && matriz[sp1.pY+1][sp1.pX] != 1) sp1.pY++;
 				if(IsKeyPressed(Key_D) && matriz[sp1.pY][sp1.pX+1] != 1) sp1.pX++;
-				if(sp1.pX<=1)sp1.pX=1;
-				else if(sp1.pX>=38)sp1.pX=38;
-				if(sp1.pY<=1)sp1.pY=1;
-				else if(sp1.pY>=18)sp1.pY=18;	
+	
 				
 				//Poner bomba
 				if(IsKeyPressed(Key_Space))
