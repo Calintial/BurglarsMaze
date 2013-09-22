@@ -8,7 +8,7 @@
 
 main(){
 	int *matriz[22];
-	mysprite sp1,sp2,sp3;
+	mysprite sp1;
 	
 	int timeToUpdate = 40;
 
@@ -22,14 +22,6 @@ main(){
 	sp1.Width = 1;
 	sp1.Height = 1;
 	sp1.sp = rojo;
-
-	sp2.pX = 11;
-	sp2.pY = 10;
-	sp2.pXold = 11;
-	sp2.pYold = 10;
-	sp2.Width = 1;
-	sp2.Height = 1;
-	sp2.sp = punto;
 
 	//initBomb();
 
@@ -49,16 +41,16 @@ main(){
 				ReadKeyboard();
 				
 				//Movimiento
-				if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1) sp1.pY--;
-				if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1) sp1.pX--;
-				if(IsKeyPressed(Key_S) && matriz[sp1.pY+1][sp1.pX] != 1) sp1.pY++;
-				if(IsKeyPressed(Key_D) && matriz[sp1.pY][sp1.pX+1] != 1) sp1.pX++;
+				if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2) sp1.pY--;
+				if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1 && matriz[sp1.pY][sp1.pX-1] != 2) sp1.pX--;
+				if(IsKeyPressed(Key_S) && matriz[sp1.pY+1][sp1.pX] != 1 && matriz[sp1.pY+1][sp1.pX] != 2) sp1.pY++;
+				if(IsKeyPressed(Key_D) && matriz[sp1.pY][sp1.pX+1] != 1 && matriz[sp1.pY][sp1.pX+1] != 2) sp1.pX++;
 	
 				
 				//Poner bomba
 				if(IsKeyPressed(Key_Space))
 				{
-					putBomb(sp1.pX, sp1.pY);
+					putBomb(sp1.pX, sp1.pY,matriz);
 				}
 
 				cont = 0;			
@@ -69,10 +61,9 @@ main(){
 			}
 			
 			updateSprite(sp1);
-			updateSprite(sp2);
 			if(bomb_exist)
 			{
-				updateSpriteBomb();
+				updateSpriteBomb(matriz);
 				if(explosion_exist)
 				{
 			    	if(bombCollide(sp1))
