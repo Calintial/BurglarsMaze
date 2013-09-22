@@ -1,27 +1,31 @@
 #include <cpcrslib.h>
 #include "keyboard.h"
+#include "inicio.h"
 #include "mapa.h"
 #include "sprites.h"
 #include "bomba.h"
 #include <stdio.h>
 
-
 main(){
 	int *matriz[22];
+	unsigned char bucle;
+	unsigned char bucleTotal;
+
 	mysprite sp1,sp2,sp3;
 	
-	int timeToUpdate = 40;
+	int timeToUpdate;
 
-	int cont = 0;
-	
+	int cont;
 
+	timeToUpdate = 2500;
+	cont = 0;
 	sp1.pX = 19;
 	sp1.pY = 10;
 	sp1.pXold = 19;
 	sp1.pYold = 10;
 	sp1.Width = 1;
 	sp1.Height = 1;
-	sp1.sp = rojo;
+	sp1.sp = ladron;
 
 	sp2.pX = 11;
 	sp2.pY = 10;
@@ -34,32 +38,34 @@ main(){
 	//initBomb();
 
 	cpc_SetModo(0);
-	
+
+	//cpc_SetColour();
+	pintaInicio();
 	init_tilemap(matriz);
 	draw_tilemap(matriz);
 
-	
-	while(1){
+	bucle=1;
+	while(bucle){
 		timeToUpdate--;
 		if(timeToUpdate<=0) {
-			timeToUpdate = 100;
+			timeToUpdate = 2500;
 			
 			if(cont<40)
 			{
 				ReadKeyboard();
 				
 				//Movimiento
-				if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1) sp1.pY--;
-				if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1) sp1.pX--;
-				if(IsKeyPressed(Key_S) && matriz[sp1.pY+1][sp1.pX] != 1) sp1.pY++;
-				if(IsKeyPressed(Key_D) && matriz[sp1.pY][sp1.pX+1] != 1) sp1.pX++;
+				if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1){sp1.pY--; sp1.sp=ladron;} 
+				if(cpc_TestKey(1)==1 && matriz[sp1.pY][sp1.pX-1] != 1){sp1.pX--; sp1.sp=ladronizq;} 
+				if(cpc_TestKey(2)==1 && matriz[sp1.pY+1][sp1.pX] != 1){sp1.pY++; sp1.sp=ladron;} 
+				if(cpc_TestKey(3)==1 && matriz[sp1.pY][sp1.pX+1] != 1){sp1.pX++; sp1.sp=ladronder;} 
 				if(sp1.pX<=1)sp1.pX=1;
 				else if(sp1.pX>=38)sp1.pX=38;
 				if(sp1.pY<=1)sp1.pY=1;
 				else if(sp1.pY>=20)sp1.pY=20;	
 				
 				//Poner bomba
-				if(IsKeyPressed(Key_Space))
+				if(cpc_TestKey(4)==1)
 				{
 					putBomb(sp1.pX, sp1.pY);
 				}
@@ -79,11 +85,15 @@ main(){
 				if(explosion_exist)
 				{
 			    	if(bombCollide(sp1))
-		      	 		cpc_PrintGphStrXY("BOOOOM; X(",200,0);
+			    	{
+		      	 		cpc_PrintGphStrXY("BOOOOM; X(",100,0);
+		      	 		//pintaInicio();
+		      	 		//cpc_ClrScr();
+			    	}
 				}
 
 			}
-
+			//pause();
 		}
 	}
 }

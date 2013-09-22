@@ -2,6 +2,10 @@ extern unsigned char rojo[];
 extern unsigned char muro[];
 extern unsigned char punto[];
 extern unsigned char borrar[];
+extern unsigned char ladron[];
+extern unsigned char ladronarriba[];
+extern unsigned char ladronder[];
+extern unsigned char ladronizq[];
 #asm
 ._borrar
 defb 2,8
@@ -43,6 +47,46 @@ defb $45,$8A
 defb $00,$00
 defb $00,$00
 defb $00,$00
+._ladron
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $BA,$75
+defb $FF,$FF
+defb $CC,$CC
+defb $EE,$DD
+defb $CC,$CC
+defb $82,$41
+._ladronder
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $FF,$BA
+defb $FF,$FF
+defb $CC,$CC
+defb $CC,$FF
+defb $CC,$CC
+defb $C3,$C3
+._ladronizq
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $75,$FF
+defb $FF,$FF
+defb $CC,$CC
+defb $FF,$CC
+defb $CC,$CC
+defb $C3,$C3
+._ladronarriba
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $FF,$FF
+defb $FF,$FF
+defb $CC,$CC
+defb $CC,$CC
+defb $CC,$CC
+defb $C3,$C3
 #endasm
 
 typedef struct
