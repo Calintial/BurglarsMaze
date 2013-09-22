@@ -7,7 +7,7 @@
 
 
 main(){
-	int *matriz[20];
+	int *matriz[22];
 	mysprite sp1,sp2,sp3;
 	
 	int timeToUpdate = 40;
