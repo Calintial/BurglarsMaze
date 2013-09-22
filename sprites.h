@@ -2,7 +2,7 @@ extern unsigned char rojo[];
 extern unsigned char muro[];
 extern unsigned char punto[];
 extern unsigned char borrar[];
-extern unsigned char tile4[];
+extern unsigned char cristal[];
 extern unsigned char pared[];
 #asm
 ._borrar
@@ -45,25 +45,25 @@ defb $45,$8A
 defb $00,$00
 defb $00,$00
 defb $00,$00
-._tile4
+._cristal
 defb 2,8
-defb $80,$40
+defb $0C,$0C
 defb $00,$04
-defb $00,$04
-defb $00,$08
+defb $08,$00
 defb $00,$08
 defb $04,$00
-defb $04,$00
-defb $80,$40
+defb $00,$04
+defb $08,$08
+defb $00,$00
 ._pared
 defb 2,8
-defb $FF,$D7
-defb $FF,$D7
-defb $FF,$D7
+defb $30,$92
+defb $30,$92
+defb $30,$92
 defb $C3,$C3
-defb $FF,$EB
-defb $FF,$EB
-defb $FF,$EB
+defb $30,$61
+defb $30,$61
+defb $30,$61
 defb $C3,$C3
 #endasm
 
@@ -95,7 +95,7 @@ void putTile(int numSprite, int x, int y)
 	int coord = cpc_GetScrAddress(x,y);
 	if(numSprite == 0) cpc_PutSprite(borrar, coord);
 	else if(numSprite == 1) cpc_PutSprite(pared, coord);
-	else if(numSprite == 2) cpc_PutSprite(tile4, coord);
+	else if(numSprite == 2) cpc_PutSprite(cristal, coord);
 	else if(numSprite == 3) cpc_PutSprite(punto, coord);
 }
 
