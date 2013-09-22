@@ -5,13 +5,14 @@ extern unsigned char malo12x8[];
 extern unsigned char malo12x8reves[];
 extern unsigned char malo24x16[];
 extern unsigned char malo24x16reves[];
-
+extern unsigned char mostrar[];
 
 
 // Compiling:
 // zcc +cpc  TileMapConf.asm -create-app -make-app -O3 -unsigned -o uno.bin code.c -lcpcrslib -lndos -zorg=16384
 
 #asm
+._mostrar defb 0,0,0,0
 ._malo12x8
 defb 2,8
 defb $3F,$00
@@ -119,10 +120,10 @@ int ultimo_mov;
 
 void crearEnemigo(){
 
-   sprite_enemigo.pX = 10;
-   sprite_enemigo.pY = 10;
-   sprite_enemigo.pXold = 10;
-   sprite_enemigo.pYold = 10;
+   sprite_enemigo.pX = 2;
+   sprite_enemigo.pY = 3;
+   sprite_enemigo.pXold = 2;
+   sprite_enemigo.pYold = 3;
    sprite_enemigo.Width = 1;
    sprite_enemigo.Height = 1;
    sprite_enemigo.sp = malo12x8reves;
@@ -133,7 +134,6 @@ void movimientoEnemigo(int * matriz[], mysprite* personaje){
    int movimiento_random=0; 
    int *mov[4];//Arriba, Abajo, Derecha,Izquierda
    int movimiento_siguiente=0;
-   int mov_buscado=0;
    mov[0]=0;
    mov[1]=0;
    mov[2]=0;
@@ -142,24 +142,43 @@ void movimientoEnemigo(int * matriz[], mysprite* personaje){
    movimiento_siguiente= moverEnemigo(matriz,mov,personaje)
    if(movimiento_siguiente==0){
       ultimo_mov=0;
-      sprite_enemigo.pY-=1;
+      sprite_enemigo.pXold=sprite_enemigo.pX;
+      sprite_enemigo.pYold=sprite_enemigo.pY;
+      sprite_enemigo.pY=sprite_enemigo.pY-1;
    }
    else if(movimiento_siguiente==1){
       ultimo_mov=1;
-      sprite_enemigo.pY+=1;
+      sprite_enemigo.pXold=sprite_enemigo.pX;
+      sprite_enemigo.pYold=sprite_enemigo.pY;
+      sprite_enemigo.pY=sprite_enemigo.pY+1;
+     /* numero(sprite_enemigo.pX);
+      cpc_PrintGphStrXY(mostrar,100,0);
+      numero(sprite_enemigo.pY);
+      cpc_PrintGphStrXY(mostrar,200,0);*/
    }
    else if(movimiento_siguiente==2){
       ultimo_mov=2;
-      sprite_enemigo.pX+=1;
+      sprite_enemigo.pXold=sprite_enemigo.pX;
+      sprite_enemigo.pYold=sprite_enemigo.pY;
+      sprite_enemigo.pX=sprite_enemigo.pX+1;
    }
-   else(movimiento_siguiente==3){
+   else if(movimiento_siguiente==3){
       ultimo_mov=3;
-      sprite_enemigo.pX-=1;
+      sprite_enemigo.pXold=sprite_enemigo.pX;
+      sprite_enemigo.pYold=sprite_enemigo.pY;
+      sprite_enemigo.pX=sprite_enemigo.pX-1;
    }
 
-   
+  
 }
-
+void numero(unsigned char a){
+   unsigned char b;
+   b=a/10;
+   mostrar[0]=b+48;
+   mostrar[1]=a-b*10+48;
+   mostrar[2]=0;
+ 
+}
 int mejor(int *mejor[]){
    int c=0;
    int maximum=mejor[0];
@@ -177,28 +196,38 @@ int mejor(int *mejor[]){
 void moverEnemigo(int * matriz[],int *mov[],mysprite personaje){
    int cant_movimientos=0;
    int i=0;
-   if(matriz[personaje.pY-1][personaje.pX]==0){
+   
+   if(matriz[sprite_enemigo.pY-1][sprite_enemigo.pX]==0){
+     
       mov[0]=1*random(100);
+   
    }
-   else if(matriz[personaje.pY+1][personaje.pX]==0){
+   if(matriz[sprite_enemigo.pY+1][sprite_enemigo.pX]==0){
       mov[1]=1*random(100);
+         
    }
-   else if(matriz[personaje.pY][personaje.pX+1]==0){
+   if(matriz[sprite_enemigo.pY][sprite_enemigo.pX+1]==0){
       mov[2]=1*random(100);
+
    }
-   else if(matriz[personaje.pY][personaje.pX-1]==0){
+  if(matriz[sprite_enemigo.pY][sprite_enemigo.pX-1]==0){
       mov[3]=1*random(100);
+
    }
    for(i=0;i<4;i++){
       
       if(mov[i]!=0){
-         cant_movimientos++;
+         cant_movimientos=cant_movimientos+1;
       }
    }
+
    //Mirar el personaje
    if(cant_movimientos!=1){
-      mov[ultimo_mov]=0;
+       if(ultimo_mov!=5){
+         mov[ultimo_mov]=0;
+      }
    }
+   
    if(personaje->pX==sprite_enemigo.pX){
       if(personaje->pX>sprite_enemigo.pX){
             return 2;

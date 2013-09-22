@@ -41,7 +41,10 @@ main(){
 	init_tilemap(matriz);
 	draw_tilemap(matriz);
 
-	crearEnemigo();
+	crearEnemigo();	
+	updateSprite(sprite_enemigo);
+	
+
 	while(1){
 		timeToUpdate--;
 		if(timeToUpdate<=0) {
@@ -51,6 +54,7 @@ main(){
 			{
 				ReadKeyboard();
 				movimientoEnemigo(matriz,sp1);
+	
 				//Movimiento
 				if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1) sp1.pY--;
 				if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1) sp1.pX--;
