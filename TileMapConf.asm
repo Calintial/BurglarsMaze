@@ -23,8 +23,8 @@ defc posicion_inicial_area_visible = $c050		;Upper left screen addres
 defc posicion_inicial_superbuffer = $100	;Start of tile map buffer
 
 ;Tile Map dimensions:
-defc T_WIDTH =  40  ;max=40		
-defc T_HEIGHT = 20  ;max=20
+defc T_WIDTH =  32  ;max=40		
+defc T_HEIGHT = 16  ;max=20
 
 defc mascara1 = 0
 defc mascara2 = 0
