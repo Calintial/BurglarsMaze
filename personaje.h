@@ -1,8 +1,8 @@
+
 #include <stdlib.h>
 #include <time.h>
-
-extern unsigned char malo14x16[];
-extern unsigned char malo14x16reves[];
+extern unsigned char malo12x8[];
+extern unsigned char malo12x8reves[];
 extern unsigned char malo24x16[];
 extern unsigned char malo24x16reves[];
 
@@ -12,6 +12,26 @@ extern unsigned char malo24x16reves[];
 // zcc +cpc  TileMapConf.asm -create-app -make-app -O3 -unsigned -o uno.bin code.c -lcpcrslib -lndos -zorg=16384
 
 #asm
+._malo12x8
+defb 2,8
+defb $3F,$00
+defb $3F,$2A
+defb $DA,$00
+defb $CF,$00
+defb $0F,$F0
+defb $0F,$A0
+defb $03,$00
+defb $30,$00
+._malo12x8reves
+defb 2,8
+defb $3F,$00
+defb $3F,$2A
+defb $DA,$00
+defb $CF,$00
+defb $0F,$F0
+defb $0F,$A0
+defb $03,$00
+defb $30,$00
 ._malo24x16reves
 defb 2,16
 defb $04,$0C
@@ -95,7 +115,7 @@ defb $50,$50
 
 
 mysprite sprite_enemigo;
-
+int ultimo_mov;
 
 void crearEnemigo(){
 
@@ -105,96 +125,93 @@ void crearEnemigo(){
    sprite_enemigo.pYold = 10;
    sprite_enemigo.Width = 1;
    sprite_enemigo.Height = 1;
-   sprite_enemigo.sp = malo24x16;
-
+   sprite_enemigo.sp = malo12x8reves;
+   ultimo_mov=5;
 }
 
 void movimientoEnemigo(int * matriz[], mysprite* personaje){
    int movimiento_random=0; 
+   int *mov[4];//Arriba, Abajo, Derecha,Izquierda
    int movimiento_siguiente=0;
    int mov_buscado=0;
+   mov[0]=0;
+   mov[1]=0;
+   mov[2]=0;
+   mov[3]=0;
 
-   do{
-      if(personaje->pX==sprite_enemigo.pX && mov_buscado==0){
-         if(personaje->pY>sprite_enemigo.pY){
-            movimiento_random=4;
-         }
-         else{
-            movimiento_random=3;
-         }
-
-      }
-      else if(personaje->pY==sprite_enemigo.pY && mov_buscado==0){
-         if(personaje->pX>sprite_enemigo.pX){
-            movimiento_random=1;
-         }
-         else{
-            movimiento_random=2;
-         }
-      }
-      else{
-         movimiento_random = random(4);
-      }
-      if(moverEnemigo(movimiento_random,matriz)){
-         movimiento_siguiente=1;
-      }
-      else{
-         mov_buscado=1;
-      }
-   }while(movimiento_siguiente==0);         
-
-
-   if (movimiento_random==1){
-      cpc_SpUpdX(sprite_enemigo,1)
-      sprite_enemigo.sp = malo14x16;
-      movimiento_siguiente=1;
+   movimiento_siguiente= moverEnemigo(matriz,mov,personaje)
+   if(movimiento_siguiente==0){
+      ultimo_mov=0;
+      sprite_enemigo.pY-=1;
    }
-
-   else if (movimiento_random==2 ){ 
-      cpc_SpUpdX(sprite_enemigo,-1)
-      sprite_enemigo.sp = malo14x16reves;
-      movimiento_siguiente=1;
+   else if(movimiento_siguiente==1){
+      ultimo_mov=1;
+      sprite_enemigo.pY+=1;
    }
-   else if (movimiento_random==3 ){
-      cpc_SpUpdY(sprite_enemigo,-1)
-      movimiento_siguiente=1;
-   }        
-   else{
-      cpc_SpUpdY(sprite_enemigo,1)
-      movimiento_siguiente=1;
+   else if(movimiento_siguiente==2){
+      ultimo_mov=2;
+      sprite_enemigo.pX+=1;
+   }
+   else(movimiento_siguiente==3){
+      ultimo_mov=3;
+      sprite_enemigo.pX-=1;
    }
 
    
 }
 
-
-int moverEnemigo(int mov, int * matriz[]){
-
-	if(mov==1){
-		if(matriz[sprite_enemigo.pY][sprite_enemigo.pX+1]!=0){
-			return 1;
-		}
-		return 0;
-	}
-	else if(mov==2){
-		if(matriz[sprite_enemigo.pY][sprite_enemigo.pX-1]!=0){
-			return 1;
-		}
+int mejor(int *mejor[]){
+   int c=0;
+   int maximum=mejor[0];
+   int location=0;
+   for (c = 0; c < 4; c++)
+  {
+    if (mejor[c] > maximum)
+    {
+       maximum  = mejor[c];
+       location = c;
+    }
+  }
+  return location;
+}
+void moverEnemigo(int * matriz[],int *mov[],mysprite personaje){
+   int cant_movimientos=0;
+   int i=0;
+   if(matriz[personaje.pY-1][personaje.pX]==0){
+      mov[0]=1*random(100);
+   }
+   else if(matriz[personaje.pY+1][personaje.pX]==0){
+      mov[1]=1*random(100);
+   }
+   else if(matriz[personaje.pY][personaje.pX+1]==0){
+      mov[2]=1*random(100);
+   }
+   else if(matriz[personaje.pY][personaje.pX-1]==0){
+      mov[3]=1*random(100);
+   }
+   for(i=0;i<4;i++){
+      
+      if(mov[i]!=0){
+         cant_movimientos++;
+      }
+   }
+   //Mirar el personaje
+   if(cant_movimientos!=1){
+      mov[ultimo_mov]=0;
+   }
+   if(personaje->pX==sprite_enemigo.pX){
+      if(personaje->pX>sprite_enemigo.pX){
+            return 2;
+      }
+      return 3;
+   }
+   if(personaje->pY==sprite_enemigo.pY){
+      if(personaje->pY>sprite_enemigo.pY){
+         return 1;
+      }
       return 0;
    }
-   else if(mov==3){
-    if(matriz[sprite_enemigo.pY+1][sprite_enemigo.pX]!=0){
-      return 1;
-   }
-   return 0;
-   }
-
-   else{
-    if(matriz[sprite_enemigo.pY-1][sprite_enemigo.pX]!=0){
-      return 1;
-   }
-   return 0;
-   }
+   return mejor(mov);
 }
 
 int random(int max) {
