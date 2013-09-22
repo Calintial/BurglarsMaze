@@ -7,7 +7,7 @@
 
 
 main(){
-	int *matriz[22];
+	int *matriz[20];
 	mysprite sp1,sp2,sp3;
 	
 	int timeToUpdate = 40;
@@ -56,7 +56,7 @@ main(){
 				if(sp1.pX<=1)sp1.pX=1;
 				else if(sp1.pX>=38)sp1.pX=38;
 				if(sp1.pY<=1)sp1.pY=1;
-				else if(sp1.pY>=20)sp1.pY=20;	
+				else if(sp1.pY>=18)sp1.pY=18;	
 				
 				//Poner bomba
 				if(IsKeyPressed(Key_Space))

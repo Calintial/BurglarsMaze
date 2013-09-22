@@ -24,8 +24,8 @@ void init_tilemap(int *matriz[]) {
 	int linea18[40];
 	int linea19[40];
 	int linea20[40];
-	int linea21[40];
-	int linea22[40];
+	/*int linea21[40];
+	int linea22[40];*/
 	
 	matriz[0] = linea1;
 	matriz[1] = linea2;
@@ -47,8 +47,8 @@ void init_tilemap(int *matriz[]) {
 	matriz[17] = linea18;
 	matriz[18] = linea19;
 	matriz[19] = linea20;
-	matriz[20] = linea21;
-	matriz[21] = linea22;
+	/*matriz[20] = linea21;
+	matriz[21] = linea22;*/
 	
 	//   [fila][columna]
 	matriz[2][2] = 1;
@@ -189,7 +189,12 @@ void init_tilemap(int *matriz[]) {
 	matriz[9][16] = 2;
 	matriz[9][17] = 2;
 
-	
+
+
+
+
+
+	/*
 	for(i=0;i<11;i++) {
 		for(j=0;j<20;j++) {
 			matriz[i][39-j] = matriz[i][j];
@@ -197,10 +202,10 @@ void init_tilemap(int *matriz[]) {
 			matriz[21-i][39-j] = matriz[i][j];
 		}
 	}
-	
+	*/
 	for(i=0;i<22;i++) {
 		for(j=0;j<40;j++) {
-			if(i==0 || j==0 || j==39 || i==21) {
+			if(i==0 || j==0 || j==39 || i==19) {
 				matriz[i][j] = 1;
 			}
 			else {
@@ -213,7 +218,7 @@ void init_tilemap(int *matriz[]) {
 void draw_tilemap(int *matriz[])
 {
 	int i, j;
-	for(i=0;i<22;i++) {
+	for(i=0;i<20;i++) {
 		for(j=0;j<40;j++) {
 			putTile(matriz[i][j],j*2,i*8);
 		}
