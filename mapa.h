@@ -51,143 +51,40 @@ void init_tilemap(int *matriz[]) {
 	matriz[21] = linea22;*/
 	
 	//   [fila][columna]
-	matriz[2][2] = 1;
-	matriz[2][3] = 1;
-	matriz[2][4] = 1;
-	matriz[3][2] = 1;
-	matriz[4][2] = 1;
 	
-	matriz[2][6] = 1;
-	matriz[2][7] = 1;
-	matriz[2][8] = 1;
 	
-	matriz[6][2] = 1;
-	matriz[7][2] = 1;
-	matriz[8][2] = 1;
-	
-	matriz[10][1] = 1;
-	matriz[10][2] = 1;
-	
-	matriz[4][4] = 1;
-	matriz[4][5] = 1;
-	matriz[4][6] = 1;
-	
-	matriz[6][4] = 1;
-	matriz[6][5] = 1;
-	matriz[6][6] = 1;
-	matriz[7][4] = 1;
-	matriz[8][4] = 1;
-	
-	matriz[10][4] = 1;
-	matriz[10][5] = 1;
-	matriz[10][6] = 1;
-	matriz[10][7] = 1;
-	matriz[10][8] = 1;
-	matriz[10][9] = 1;
-	matriz[9][6] = 1;
-	matriz[9][7] = 1;
-	matriz[8][6] = 1;
-	matriz[8][7] = 1;
-	
-	matriz[4][8] = 1;
-	matriz[5][8] = 1;
-	matriz[6][8] = 1;
-	
-	matriz[4][10] = 1;
-	matriz[5][10] = 1;
-	matriz[6][10] = 1;
-	matriz[7][10] = 1;
-	matriz[8][10] = 1;
-	matriz[8][9] = 1;
 
-	matriz[2][10] = 1;
-	matriz[2][11] = 1;
-	matriz[2][12] = 1;
-	matriz[3][12] = 1;
-	matriz[4][12] = 1;
-	matriz[5][12] = 1;
-	
-	matriz[7][12] = 1;
-	matriz[8][12] = 1;
-	matriz[8][13] = 1;
-	matriz[9][13] = 1;
-	matriz[9][12] = 1;
-	matriz[10][11] = 1;
-	matriz[10][12] = 1;
-	matriz[10][13] = 1;
-	
-	matriz[4][14] = 1;
-	matriz[5][14] = 1;
-	matriz[6][14] = 1;
-	
-	matriz[2][14] = 1;
-	matriz[2][15] = 1;
-	matriz[2][16] = 1;
-	matriz[2][17] = 1;
-	matriz[3][16] = 1;
-	matriz[4][16] = 1;
-	
-	matriz[6][16] = 1;
-	matriz[7][16] = 1;
-	matriz[8][16] = 1;
-	matriz[8][15] = 1;
-	
-	matriz[10][15] = 1;
-	
-	matriz[10][17] = 1;
-	matriz[10][18] = 1;
-	
-	matriz[8][18] = 1;
-	matriz[8][19] = 1;
-	
-	matriz[1][19] = 1;
-	matriz[2][19] = 1;
-	matriz[3][19] = 1;
-	matriz[4][18] = 1;
-	matriz[4][19] = 1;
-	matriz[5][18] = 1;
-	matriz[5][19] = 1;
-	matriz[6][18] = 1;
-	matriz[6][19] = 1;
-	
-	matriz[1][1] = 2;
-	matriz[1][5] = 2;
-	matriz[1][9] = 2;
-	matriz[1][13] = 2;
-	matriz[1][18] = 2;
-	matriz[3][3] = 2;
-	matriz[3][5] = 2;
-	matriz[3][7] = 2;
-	matriz[3][9] = 2;
-	matriz[3][11] = 2;
-	matriz[3][13] = 2;
-	matriz[3][15] = 2;
-	matriz[3][17] = 2;
-	matriz[3][18] = 2;
-	matriz[5][1] = 2;
-	matriz[5][3] = 2;
-	matriz[5][7] = 2;
-	matriz[5][15] = 2;
-	matriz[5][17] = 2;
-	matriz[6][11] = 2;
-	matriz[6][13] = 2;
-	matriz[7][5] = 2;
-	matriz[7][7] = 2;
-	matriz[7][8] = 2;
-	matriz[7][9] = 2;
-	matriz[7][13] = 2;
-	matriz[7][14] = 2;
-	matriz[7][15] = 2;
-	matriz[7][17] = 2;
-	matriz[9][1] = 2;
-	matriz[9][3] = 2;
-	matriz[9][5] = 2;
-	matriz[9][8] = 2;
-	matriz[9][10] = 2;
-	matriz[9][11] = 2;
-	matriz[9][14] = 2;
-	matriz[9][16] = 2;
-	matriz[9][17] = 2;
+	//matriz[][] = ;
+	matriz[6][1] = 2;
+	matriz[9][1] = 1;
+	matriz[10][1] = 1;
+	matriz[11][1] = 1;
+	matriz[6][2] = 2;
+	matriz[9][2] = 1;
+	matriz[10][2] = 1;
+	matriz[11][2] = 1;
+	matriz[14][2] = 1;
+	matriz[15][2] = 1;
+	matriz[16][2] = 1;
+	matriz[1][3] = 1;
+	matriz[2][3] = 1;
+	matriz[3][3] = 1;
+	matriz[6][3] = 1;
+	matriz[11][3] = 1;
+	matriz[14][3] = 1;
+	matriz[1][4] = 1;
+	matriz[2][4] = 1;
+	matriz[3][4] = 1;
+	matriz[6][4] = 1;
+	matriz[11][4] = 1;
+	matriz[14][4] = 1;
+	matriz[17][4] = 1;
+	matriz[18][4] = 1;
+
+	matriz[1][5] = 3;
+	matriz[1][6] = 3;
+	matriz[2][5] = 3;
+	matriz[2][6] = 3;
 
 
 
