@@ -6,6 +6,9 @@ extern unsigned char ladron[];
 extern unsigned char ladronarriba[];
 extern unsigned char ladronder[];
 extern unsigned char ladronizq[];
+extern unsigned char tile4[];
+extern unsigned char pared[];
+
 #asm
 ._borrar
 defb 2,8
@@ -51,41 +54,61 @@ defb $00,$00
 defb 2,8
 defb $04,$08
 defb $0C,$0C
-defb $BA,$75
-defb $FF,$FF
+defb $90,$60
+defb $C0,$C0
 defb $CC,$CC
-defb $EE,$DD
+defb $C4,$C8
 defb $CC,$CC
 defb $82,$41
 ._ladronder
 defb 2,8
 defb $04,$08
 defb $0C,$0C
-defb $FF,$BA
-defb $FF,$FF
+defb $C0,$30
+defb $C0,$C0
 defb $CC,$CC
-defb $CC,$FF
+defb $CC,$C0
 defb $CC,$CC
 defb $C3,$C3
 ._ladronizq
 defb 2,8
 defb $04,$08
 defb $0C,$0C
-defb $75,$FF
-defb $FF,$FF
+defb $60,$C0
+defb $C0,$C0
 defb $CC,$CC
-defb $FF,$CC
+defb $C0,$CC
 defb $CC,$CC
 defb $C3,$C3
 ._ladronarriba
 defb 2,8
 defb $04,$08
 defb $0C,$0C
-defb $FF,$FF
-defb $FF,$FF
+defb $C0,$C0
+defb $C0,$C0
 defb $CC,$CC
 defb $CC,$CC
 defb $CC,$CC
+defb $C3,$C3
+._tile4
+defb 2,8
+defb $80,$40
+defb $00,$04
+defb $00,$04
+defb $00,$08
+defb $00,$08
+defb $04,$00
+defb $04,$00
+defb $80,$40
+._pared
+defb 2,8
+defb $FF,$D7
+defb $FF,$D7
+defb $FF,$D7
+defb $C3,$C3
+defb $FF,$EB
+defb $FF,$EB
+defb $FF,$EB
 defb $C3,$C3
 #endasm
 
@@ -116,7 +139,9 @@ void putTile(int numSprite, int x, int y)
 {
 	int coord = cpc_GetScrAddress(x,y);
 	if(numSprite == 0) cpc_PutSprite(borrar, coord);
-	else if(numSprite == 1) cpc_PutSprite(muro, coord);
+	else if(numSprite == 1) cpc_PutSprite(pared, coord);
+	else if(numSprite == 2) cpc_PutSprite(tile4, coord);
+	else if(numSprite == 3) cpc_PutSprite(punto, coord);
 }
 
 void updateSprite(mysprite* sprite)

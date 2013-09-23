@@ -51,9 +51,7 @@ main(){
 			timeToUpdate = 2500;
 			
 			if(cont<40)
-			{
-				ReadKeyboard();
-				
+			{	
 				//Movimiento
 				if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1){sp1.pY--; sp1.sp=ladron;} 
 				if(cpc_TestKey(1)==1 && matriz[sp1.pY][sp1.pX-1] != 1){sp1.pX--; sp1.sp=ladronizq;} 
@@ -62,8 +60,9 @@ main(){
 				if(sp1.pX<=1)sp1.pX=1;
 				else if(sp1.pX>=38)sp1.pX=38;
 				if(sp1.pY<=1)sp1.pY=1;
-				else if(sp1.pY>=20)sp1.pY=20;	
+				else if(sp1.pY>=20)sp1.pY=20;
 				
+
 				//Poner bomba
 				if(cpc_TestKey(4)==1)
 				{
