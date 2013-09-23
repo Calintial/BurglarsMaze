@@ -39,10 +39,10 @@ main(){
 
 
 
-			sp1.pX = 19;
-			sp1.pY = 10;
-			sp1.pXold = 19;
-			sp1.pYold = 10;
+			sp1.pX = 21;
+			sp1.pY = 9;
+			sp1.pXold = 21;
+			sp1.pYold = 9;
 			sp1.Width = 1;
 			sp1.Height = 1;
 			sp1.sp = rojo;
@@ -52,10 +52,11 @@ main(){
 			draw_tilemap(matriz);
 				crearEnemigo();	
 				updateSprite(sprite_enemigo);
+
 			while(1){
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
-					timeToUpdate = 500;
+					timeToUpdate = 5500;
 					
 					if(cont<40)
 					{

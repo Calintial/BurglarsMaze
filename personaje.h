@@ -120,10 +120,10 @@ int ultimo_mov;
 
 void crearEnemigo(){
 
-   sprite_enemigo.pX = 2;
-   sprite_enemigo.pY = 3;
-   sprite_enemigo.pXold = 2;
-   sprite_enemigo.pYold = 3;
+   sprite_enemigo.pX = 19;
+   sprite_enemigo.pY = 9;
+   sprite_enemigo.pXold = 19;
+   sprite_enemigo.pYold =9;
    sprite_enemigo.Width = 1;
    sprite_enemigo.Height = 1;
    sprite_enemigo.sp = malo12x8reves;
@@ -224,21 +224,35 @@ void moverEnemigo(int * matriz[],int *mov[],mysprite personaje){
    //Mirar el personaje
    if(cant_movimientos!=1){
        if(ultimo_mov!=5){
-         mov[ultimo_mov]=0;
+        if(ultimo_mov==1){
+          mov[0]=0;
+        }
+        else if(ultimo_mov==0){
+          mov[1]=0;
+        }
+        else if(ultimo_mov==2){
+          mov[3]=0;
+        }
+        else if(ultimo_mov==3){
+          mov[2]=0;
+        }
+
+        
       }
    }
-   
+  /* numero(personaje->pX);
+      cpc_PrintGphStrXY(mostrar,100,0);*/
    if(personaje->pX==sprite_enemigo.pX){
-      if(personaje->pX>sprite_enemigo.pX){
-            return 2;
-      }
-      return 3;
-   }
-   if(personaje->pY==sprite_enemigo.pY){
       if(personaje->pY>sprite_enemigo.pY){
-         return 1;
+            return 1;
       }
       return 0;
+   }
+   if(personaje->pY==sprite_enemigo.pY){
+      if(personaje->pX>sprite_enemigo.pX){
+         return 2;
+      }
+      return 3;
    }
    return mejor(mov);
 }
