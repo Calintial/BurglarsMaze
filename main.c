@@ -5,6 +5,13 @@
 #include "sprites.h"
 #include "bomba.h"
 #include <stdio.h>
+#include <stdlib.h>	
+
+
+
+#asm
+._mostrar2 defb 0,0,0,0
+#endasm
 
 main(){
 	int *matriz[22];
@@ -13,6 +20,7 @@ main(){
 	int timeToUpdate;
 
 	int cont;
+	int puntos = 0;
 
 	cpc_SetModo(0);
 
@@ -52,6 +60,9 @@ main(){
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
 			while(1){
+
+				printPuntos(puntos);
+
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
 					timeToUpdate = 2500;
@@ -86,6 +97,17 @@ main(){
 					}
 					
 					updateSprite(sp1);
+
+	                /*if (cpc_CollSp(sprite_personaje,sprite_moneda))
+	                {
+	                        sprite_moneda.sp0 = explosion;
+	                        puntos++;
+	                }
+	                else
+	                {
+	                        sprite_moneda.sp0 = moneda;
+	                }*/
+
 					if(bomb_exist)
 					{
 						updateSpriteBomb(matriz);

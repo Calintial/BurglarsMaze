@@ -1,3 +1,7 @@
+
+
+extern unsigned char mostrar2[];
+
 //Valores que se ven bien --> 0, 2, 8, 10, 32, 34, 40, 42, 128, 130, 136, 138, 160, 162, 168, 170
 void setColor (unsigned char fondo,unsigned char t){
 	 cpc_SetInkGphStr(0,fondo);
@@ -54,4 +58,25 @@ void pause(void) {
       halt
       djnz pause_loop
       #endasm
+}
+
+void numero(unsigned char a){
+    unsigned char b;
+    b=a/10;
+
+	mostrar2[0]=b+48;
+	mostrar2[1]=a-b*10+48;
+	mostrar2[2]=0;
+
+	return mostrar2;
+}
+
+void printPuntos(int puntos){
+
+        char cadena_puntos[11];
+
+        cpc_PrintGphStrXY("SCORE:",30,10);
+        numero(puntos);
+        cpc_PrintGphStrXY(mostrar2,50,10);
+
 }
