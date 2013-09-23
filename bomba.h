@@ -58,14 +58,14 @@ void initBomb(void)
 	sprite_bomba.sp = bomba;
 }
 
-void putBomb(char x, char y)
+void putBomb(char x, char y,int* matriz[])
 {	
 	if(bomb_exist)
 	{
 		if(!explosion_exist)
 			deleteSprite(sprite_bomba);
 		else
-			borrarExplosion();
+			borrarExplosion(matriz);
 	}
 
 	sprite_bomba.sp = bomba;
@@ -78,13 +78,13 @@ void putBomb(char x, char y)
 	explosion_exist = 0;
 }
 
-void updateSpriteBomb()
+void updateSpriteBomb(int* matriz[])
 {
 	if(!explosion_exist)
 	{
 		if(bomb_time == 30)
 		{
-			explotar();
+			explotar(matriz);
 			bomb_time = 0;
 			explosion_exist = 1;
 		}
@@ -104,7 +104,7 @@ void updateSpriteBomb()
 		{
 			bomb_time++;
 		}
-		updateBomb();
+		updateBomb(matriz);
 	}
 	else
 	{
@@ -113,19 +113,19 @@ void updateSpriteBomb()
 			bomb_time = 0;
 			bomb_exist = 0;
 			explosion_exist = 0;
-			borrarExplosion();
+			borrarExplosion(matriz);
 		}
 		else
 		{
 			bomb_time++;
-			updateBomb();
+			updateBomb(matriz);
 		}
 	}
 	
 
 }
 
-void updateBomb(void)
+void updateBomb(int* matriz[])
 {
 
 	if(!explosion_exist)
@@ -134,28 +134,86 @@ void updateBomb(void)
 	}
 	else
 	{
-		explotar();
+		explotar(matriz);
 	}
 
 }
 
-void explotar(void)
+void explotar(int* matriz[])
 {
+	int x = sprite_bomba.pX;
+	int y = sprite_bomba.pY;
+
 	//Dibujar las explosiones
-	putElement(explosion,(sprite_bomba.pX+1)*2,sprite_bomba.pY*8);
-	putElement(explosion,(sprite_bomba.pX-1)*2,sprite_bomba.pY*8);
-	putElement(explosion,sprite_bomba.pX*2,(sprite_bomba.pY+1)*8);
-	putElement(explosion,sprite_bomba.pX*2,(sprite_bomba.pY-1)*8);
-	putElement(explosion,sprite_bomba.pX*2,sprite_bomba.pY*8);
+	if(matriz[y][x+1] != 1 && matriz[y][x+1] != 3 && matriz[y][x+1] != 2)
+	{
+		putElement(explosion,(x+1)*2,y*8);
+	}
+	else if(matriz[y][x+1] == 3)
+	{
+
+	}
+	else if(matriz[y][x+1] == 2)
+	{
+		putElement(explosion,(x+1)*2,y*8);
+		matriz[y][x+1] = 0;
+	}
+
+	if(matriz[y][x-1] != 1 && matriz[y][x-1] != 3 && matriz[y][x-1] != 2)
+	{
+		putElement(explosion,(x-1)*2,y*8);
+	}
+	else if(matriz[y][x-1] == 3)
+	{
+
+	}
+	else if(matriz[y][x-1] == 2)
+	{
+		putElement(explosion,(x-1)*2,y*8);
+		matriz[y][x-1] = 0;
+	}
+
+	if(matriz[y+1][x] != 1 && matriz[y+1][x] != 3 && matriz[y+1][x] != 2)
+	{
+		putElement(explosion,x*2,(y+1)*8);
+	}
+	else if(matriz[y+1][x] == 3)
+	{
+
+	}
+	else if(matriz[y+1][x] == 2)
+	{
+		putElement(explosion,x*2,(y+1)*8);
+		matriz[y+1][x] = 0;
+	}
+	
+	if(matriz[y-1][x] != 1 && matriz[y-1][x] != 3 && matriz[y-1][x] != 2)
+	{
+		putElement(explosion,x*2,(y-1)*8);
+	}
+	else if(matriz[y-1][x] == 3)
+	{
+
+	}
+	else if(matriz[y-1][x] == 2)
+	{
+		putElement(explosion,x*2,(y-1)*8);
+		matriz[y-1][x] = 0;
+	}
+	
+	putElement(explosion,x*2,y*8);
 }
 
-void borrarExplosion(void)
+void borrarExplosion(int* matriz[])
 {
-	putTile(0,(sprite_bomba.pX+1)*2,sprite_bomba.pY*8);
-	putTile(0,(sprite_bomba.pX-1)*2,sprite_bomba.pY*8);
-	putTile(0,sprite_bomba.pX*2,(sprite_bomba.pY+1)*8);
-	putTile(0,sprite_bomba.pX*2,(sprite_bomba.pY-1)*8);
-	putTile(0,sprite_bomba.pX*2,sprite_bomba.pY*8);
+	int x = sprite_bomba.pX;
+	int y = sprite_bomba.pY;y
+
+	putTile(matriz[y][x+1],(x+1)*2,y*8);
+	putTile(matriz[y][x-1],(x-1)*2,y*8);
+	putTile(matriz[y+1][x],x*2,(y+1)*8);
+	putTile(matriz[y-1][x],x*2,(y-1)*8);
+	putTile(matriz[y][x],x*2,y*8);
 }
 
 void bombCollide(mysprite* sprite)
