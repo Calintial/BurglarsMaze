@@ -2,8 +2,14 @@ extern unsigned char rojo[];
 extern unsigned char muro[];
 extern unsigned char punto[];
 extern unsigned char borrar[];
+extern unsigned char ladron[];
+extern unsigned char ladronarriba[];
+extern unsigned char ladronder[];
+extern unsigned char ladronizq[];
+extern unsigned char tile4[];
 extern unsigned char cristal[];
 extern unsigned char pared[];
+
 #asm
 ._borrar
 defb 2,8
@@ -45,6 +51,46 @@ defb $45,$8A
 defb $00,$00
 defb $00,$00
 defb $00,$00
+._ladron
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $90,$60
+defb $C0,$C0
+defb $CC,$CC
+defb $C4,$C8
+defb $CC,$CC
+defb $82,$41
+._ladronder
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $C0,$30
+defb $C0,$C0
+defb $CC,$CC
+defb $CC,$C0
+defb $CC,$CC
+defb $C3,$C3
+._ladronizq
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $60,$C0
+defb $C0,$C0
+defb $CC,$CC
+defb $C0,$CC
+defb $CC,$CC
+defb $C3,$C3
+._ladronarriba
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $C0,$C0
+defb $C0,$C0
+defb $CC,$CC
+defb $CC,$CC
+defb $CC,$CC
+defb $C3,$C3
 ._cristal
 defb 2,8
 defb $0C,$0C

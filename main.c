@@ -1,13 +1,20 @@
 #include <cpcrslib.h>
 #include "keyboard.h"
+#include "inicio.h"
 #include "mapa.h"
 #include "sprites.h"
 #include "bomba.h"
 #include <stdio.h>
+#include <stdlib.h>	
 
 #include "personaje.h"
 
 
+
+
+#asm
+._mostrar2 defb 0,0,0,0
+#endasm
 
 main(){
 	int *matriz[22];
@@ -16,26 +23,37 @@ main(){
 	int timeToUpdate;
 
 	int cont;
-
+	int puntos = 0;
+	int numMonedas = 76;
 
 	cpc_SetModo(0);
-	
 
-	
+	//cpc_SetColour();
 
-	
-	cpc_AssignKey(0, 0x4704);
-	cpc_AssignKey(1, 0x4780);
+	// Redefinir tecla R
+	cpc_AssignKey(8,0x4604);
+	// Redefinir tecla E	
+	cpc_AssignKey(9,0x4704);
+	// Redefinir tecla X
+	cpc_AssignKey(7, 0x4780);
+	// Redefinir teclas iniciales
+	cpc_AssignKey(0,0x4708);
+	cpc_AssignKey(1,0x4820);
+	cpc_AssignKey(2,0x4710);
+	cpc_AssignKey(3,0x4720);
+	cpc_AssignKey(4,0x4580);
+
+	// cpc_AssignKey(0, 0x4704);
+	// cpc_AssignKey(1, 0x4780);
 	do
 	{
-		cpc_PrintGphStrXY("PULSA E PARA EMPEZAR;",0,0);
-		cpc_PrintGphStrXY("PULSA X PARA SALIR;",0,10);
-		if(cpc_TestKey(0)==1)
+		pintaInicio();
+		puntos = 0;
+		
+		if(cpc_TestKey(9)==1)
 		{
-			timeToUpdate = 500;
-
+			timeToUpdate = 2500;
 			cont = 0;
-			
 
 
 
@@ -45,32 +63,37 @@ main(){
 			sp1.pYold = 9;
 			sp1.Width = 1;
 			sp1.Height = 1;
-			sp1.sp = rojo;
+			sp1.sp = ladron;
 
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
-				crearEnemigo();	
-				updateSprite(sprite_enemigo);
-
+			crearEnemigo();	
+			updateSprite(sprite_enemigo);
 			while(1){
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
-					timeToUpdate = 5500;
-					
+					//timeToUpdate = 5500;
+					timeToUpdate = 2500;
+					printPuntos(puntos);
 					if(cont<40)
 					{
 						ReadKeyboard();
 						movimientoEnemigo(matriz,sp1);
 						//Movimiento
-						if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2) sp1.pY--;
-						if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1 && matriz[sp1.pY][sp1.pX-1] != 2) sp1.pX--;
-						if(IsKeyPressed(Key_S) && matriz[sp1.pY+1][sp1.pX] != 1 && matriz[sp1.pY+1][sp1.pX] != 2) sp1.pY++;
-						if(IsKeyPressed(Key_D) && matriz[sp1.pY][sp1.pX+1] != 1 && matriz[sp1.pY][sp1.pX+1] != 2) sp1.pX++;
+
+						if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2){sp1.pY--; sp1.sp=ladron;} 
+						if(cpc_TestKey(1)==1 && matriz[sp1.pY][sp1.pX-1] != 1 && matriz[sp1.pY][sp1.pX-1] != 2){sp1.pX--; sp1.sp=ladronizq;} 
+						if(cpc_TestKey(2)==1 && matriz[sp1.pY+1][sp1.pX] != 1 && matriz[sp1.pY+1][sp1.pX] != 2){sp1.pY++; sp1.sp=ladron;} 
+						if(cpc_TestKey(3)==1 && matriz[sp1.pY][sp1.pX+1] != 1 && matriz[sp1.pY][sp1.pX+1] != 2){sp1.pX++; sp1.sp=ladronder;} 
+						if(sp1.pX<=1)sp1.pX=1;
+						else if(sp1.pX>=38)sp1.pX=38;
+						if(sp1.pY<=1)sp1.pY=1;
+						else if(sp1.pY>=20)sp1.pY=20;
 			
 						
 						//Poner bomba
-						if(IsKeyPressed(Key_Space))
+						if(cpc_TestKey(4)==1)
 						{
 							putBomb(sp1.pX, sp1.pY,matriz);
 						}
@@ -84,6 +107,13 @@ main(){
 					
 					updateSprite(sp1);
 					updateSprite(sprite_enemigo);
+
+	                if(matriz[sp1.pY][sp1.pX]==3)
+					{
+						puntos++;
+						matriz[sp1.pY][sp1.pX]=0;
+					}
+
 					if(bomb_exist)
 					{
 						updateSpriteBomb(matriz);
@@ -103,9 +133,17 @@ main(){
 					}
 
 				}
+
+				if(puntos == numMonedas){
+					cpc_ClrScr();
+					printYouWin(puntos);
+					while(cpc_TestKey(8)!=1 && cpc_TestKey(7)!=1){}
+					cpc_ClrScr();
+					break;
+				}
 			}			
 		}
 
-	}while(cpc_TestKey(1)==0);
+	}while(cpc_TestKey(7)==0);
 
 }

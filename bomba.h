@@ -82,13 +82,13 @@ void updateSpriteBomb(int* matriz[])
 {
 	if(!explosion_exist)
 	{
-		if(bomb_time == 150)
+		if(bomb_time == 30)
 		{
 			explotar(matriz);
 			bomb_time = 0;
 			explosion_exist = 1;
 		}
-		else if(bomb_time >= 75 && bomb_time%5==0)
+		else if(bomb_time >= 15 && bomb_time%5==0)
 		{
 			if(sprite_bomba.sp == bomba)
 			{
@@ -108,7 +108,7 @@ void updateSpriteBomb(int* matriz[])
 	}
 	else
 	{
-		if(bomb_time == 150)
+		if(bomb_time == 30)
 		{
 			bomb_time = 0;
 			bomb_exist = 0;
