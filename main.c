@@ -59,14 +59,12 @@ main(){
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
+
 			while(1){
-
-				printPuntos(puntos);
-
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
 					timeToUpdate = 2500;
-					
+					printPuntos(puntos);
 					if(cont<40)
 					{
 						ReadKeyboard();
@@ -98,15 +96,12 @@ main(){
 					
 					updateSprite(sp1);
 
-	                /*if (cpc_CollSp(sprite_personaje,sprite_moneda))
-	                {
-	                        sprite_moneda.sp0 = explosion;
-	                        puntos++;
-	                }
-	                else
-	                {
-	                        sprite_moneda.sp0 = moneda;
-	                }*/
+	                if(matriz[sp1.pY][sp1.pX]==3)
+					{
+						puntos++;
+						matriz[sp1.pY][sp1.pX]=0;
+					}
+
 
 					if(bomb_exist)
 					{

@@ -72,11 +72,7 @@ void numero(unsigned char a){
 }
 
 void printPuntos(int puntos){
-
-        char cadena_puntos[11];
-
-        cpc_PrintGphStrXY("SCORE:",30,10);
+        cpc_PrintGphStrXY("SCORE:",30,8);
         numero(puntos);
-        cpc_PrintGphStrXY(mostrar2,50,10);
-
+        cpc_PrintGphStrXY(mostrar2,50,8);
 }
