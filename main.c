@@ -7,7 +7,7 @@
 #include "mapa.h"
 #include "sprites.h"
 #include "bomba.h"
-// #include "personaje.h"
+#include "personaje.h"
 
 
 
@@ -65,8 +65,9 @@ main(){
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
-			//crearEnemigo();	
-			//updateSprite(sprite_enemigo);
+			crearEnemigo();	
+			updateSprite(sprite_enemigo);
+
 			while(1){
 				int puntos = 0;
 				int numMonedas = 76;
@@ -78,7 +79,7 @@ main(){
 					if(cont<40)
 					{
 						ReadKeyboard();
-						//movimientoEnemigo(matriz,sp1);
+						movimientoEnemigo(matriz,sp1);
 						//Movimiento
 
 						if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2){sp1.pY--; sp1.sp=ladron;} 
@@ -102,7 +103,7 @@ main(){
 					}
 					
 					updateSprite(sp1);
-					//updateSprite(sprite_enemigo);
+					updateSprite(sprite_enemigo);
 
 	                if(matriz[sp1.pY][sp1.pX]==3)
 					{
