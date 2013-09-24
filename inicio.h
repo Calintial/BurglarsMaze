@@ -22,15 +22,15 @@ void pintaInicio(void)
 {
 //Valores que se ven bien --> 0, 2, 8, 10, 32, 34, 40, 42, 128, 130, 136, 138, 160, 162, 168, 170
 	setColor(0,170);
-	cpc_PrintGphStrXY("CALINTIAL TEAM",11,38);
+	cpc_PrintGphStrXY("CALINTIAL;TEAM",11,38);
 	setColor(0,128);
 	cpc_PrintGphStrXY("PRESENTS",15,46);
 	setColor(0,138);
-	cpc_PrintGphStrXY("TITLE GAME",16,68);
+	cpc_PrintGphStrXY("TITLE;GAME",16,68);
 	setColor(0,168);
-	cpc_PrintGphStrXY("PRESS E TO START;",5,130);
-	cpc_PrintGphStrXY("PRESS X TO EXIT;",5,142);
-	cpc_PrintGphStrXY("PRESS R TO REDEFINE KEYS:",5,154);
+	cpc_PrintGphStrXY("PRESS;E;TO;START;",5,130);
+	cpc_PrintGphStrXY("PRESS;X;TO;EXIT;",5,142);
+	cpc_PrintGphStrXY("PRESS;R;TO;REDEFINE KEYS:",5,154);
 
 	              
 	if (cpc_TestKey(8)==1)
@@ -83,6 +83,6 @@ void printYouWin(int puntos){
 	cpc_PrintGphStrXY("SCORE:",30,58);
     numero(puntos);
     cpc_PrintGphStrXY(mostrar2,50,58);
-    cpc_PrintGphStrXY("PRESS X TO EXIT;",5,142);
-	cpc_PrintGphStrXY("PRESS R TO GO BACK TO THE MAIN MENU:",5,154);
+    cpc_PrintGphStrXY("PRESS;X;TO;EXIT;",5,142);
+	cpc_PrintGphStrXY("PRESS;R;TO;GO;BACK;TO;THE;MAIN;MENU:",5,154);
 }

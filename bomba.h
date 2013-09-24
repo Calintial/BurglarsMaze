@@ -207,7 +207,7 @@ void explotar(int* matriz[])
 void borrarExplosion(int* matriz[])
 {
 	int x = sprite_bomba.pX;
-	int y = sprite_bomba.pY;y
+	int y = sprite_bomba.pY;
 
 	putTile(matriz[y][x+1],(x+1)*2,y*8);
 	putTile(matriz[y][x-1],(x-1)*2,y*8);

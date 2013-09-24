@@ -1,4 +1,3 @@
-extern unsigned char rojo[];
 extern unsigned char muro[];
 extern unsigned char punto[];
 extern unsigned char borrar[];
@@ -6,7 +5,6 @@ extern unsigned char ladron[];
 extern unsigned char ladronarriba[];
 extern unsigned char ladronder[];
 extern unsigned char ladronizq[];
-extern unsigned char tile4[];
 extern unsigned char cristal[];
 extern unsigned char pared[];
 
@@ -21,16 +19,6 @@ defb $00,$00
 defb $00,$00
 defb $00,$00
 defb $00,$00
-._rojo
-defb 2,8
-defb $44,$88
-defb $10,$20
-defb $45,$8A
-defb $CC,$CD
-defb $CE,$88
-defb $44,$88
-defb $50,$88
-defb $00,$A0
 ._muro
 defb 2,8
 defb $03,$03

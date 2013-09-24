@@ -1,13 +1,13 @@
 #include <cpcrslib.h>
+#include <stdio.h>
+#include <stdlib.h>	
+
 #include "keyboard.h"
 #include "inicio.h"
 #include "mapa.h"
 #include "sprites.h"
 #include "bomba.h"
-#include <stdio.h>
-#include <stdlib.h>	
-
-#include "personaje.h"
+// #include "personaje.h"
 
 
 
@@ -23,8 +23,6 @@ main(){
 	int timeToUpdate;
 
 	int cont;
-	int puntos = 0;
-	int numMonedas = 76;
 
 	cpc_SetModo(0);
 
@@ -48,7 +46,6 @@ main(){
 	do
 	{
 		pintaInicio();
-		puntos = 0;
 		
 		if(cpc_TestKey(9)==1)
 		{
@@ -68,9 +65,11 @@ main(){
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
-			crearEnemigo();	
-			updateSprite(sprite_enemigo);
+			//crearEnemigo();	
+			//updateSprite(sprite_enemigo);
 			while(1){
+				int puntos = 0;
+				int numMonedas = 76;
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
 					//timeToUpdate = 5500;
@@ -79,17 +78,13 @@ main(){
 					if(cont<40)
 					{
 						ReadKeyboard();
-						movimientoEnemigo(matriz,sp1);
+						//movimientoEnemigo(matriz,sp1);
 						//Movimiento
 
 						if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2){sp1.pY--; sp1.sp=ladron;} 
 						if(cpc_TestKey(1)==1 && matriz[sp1.pY][sp1.pX-1] != 1 && matriz[sp1.pY][sp1.pX-1] != 2){sp1.pX--; sp1.sp=ladronizq;} 
 						if(cpc_TestKey(2)==1 && matriz[sp1.pY+1][sp1.pX] != 1 && matriz[sp1.pY+1][sp1.pX] != 2){sp1.pY++; sp1.sp=ladron;} 
 						if(cpc_TestKey(3)==1 && matriz[sp1.pY][sp1.pX+1] != 1 && matriz[sp1.pY][sp1.pX+1] != 2){sp1.pX++; sp1.sp=ladronder;} 
-						if(sp1.pX<=1)sp1.pX=1;
-						else if(sp1.pX>=38)sp1.pX=38;
-						if(sp1.pY<=1)sp1.pY=1;
-						else if(sp1.pY>=20)sp1.pY=20;
 			
 						
 						//Poner bomba
@@ -106,7 +101,7 @@ main(){
 					}
 					
 					updateSprite(sp1);
-					updateSprite(sprite_enemigo);
+					//updateSprite(sprite_enemigo);
 
 	                if(matriz[sp1.pY][sp1.pX]==3)
 					{
