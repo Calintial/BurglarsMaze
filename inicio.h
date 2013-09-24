@@ -76,3 +76,13 @@ void printPuntos(int puntos){
         numero(puntos);
         cpc_PrintGphStrXY(mostrar2,50,8);
 }
+
+void printYouWin(int puntos){
+	setColor(0,170);
+	cpc_PrintGphStrXY("YOU WIN",11,38);
+	cpc_PrintGphStrXY("SCORE:",30,58);
+    numero(puntos);
+    cpc_PrintGphStrXY(mostrar2,50,58);
+    cpc_PrintGphStrXY("PULSA X PARA SALIR;",5,142);
+	cpc_PrintGphStrXY("PULSA R PARA VOLVER AL MENU:",5,154);
+}
