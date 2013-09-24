@@ -28,9 +28,9 @@ void pintaInicio(void)
 	setColor(0,138);
 	cpc_PrintGphStrXY("TITLE GAME",16,68);
 	setColor(0,168);
-	cpc_PrintGphStrXY("PULSA E PARA EMPEZAR;",5,130);
-	cpc_PrintGphStrXY("PULSA X PARA SALIR;",5,142);
-	cpc_PrintGphStrXY("PULSA R PARA REDEFINIR LAS TECLAS:",5,154);
+	cpc_PrintGphStrXY("PRESS E TO START;",5,130);
+	cpc_PrintGphStrXY("PRESS X TO EXIT;",5,142);
+	cpc_PrintGphStrXY("PRESS R TO REDEFINE KEYS:",5,154);
 
 	              
 	if (cpc_TestKey(8)==1)
@@ -41,11 +41,11 @@ void pintaInicio(void)
 		cpc_AssignKey(2,0x0000);
 		cpc_AssignKey(3,0x0000);
 		cpc_AssignKey(4,0x0000);
-		redefine_tecla(0,"ARRIBA");
-		redefine_tecla(2,"ABAJO");
-		redefine_tecla(1,"IZQUIERDA");
-		redefine_tecla(3,"DERECHA"); 
-		redefine_tecla(4,"BOMBA");             
+		redefine_tecla(0,"UP");
+		redefine_tecla(2,"DOWN");
+		redefine_tecla(1,"LEFT");
+		redefine_tecla(3,"RIGHT"); 
+		redefine_tecla(4,"BOMB");             
 	}
 }
 
@@ -79,10 +79,10 @@ void printPuntos(int puntos){
 
 void printYouWin(int puntos){
 	setColor(0,170);
-	cpc_PrintGphStrXY("YOU WIN",11,38);
+	cpc_PrintGphStrXY("YOU;WIN",11,38);
 	cpc_PrintGphStrXY("SCORE:",30,58);
     numero(puntos);
     cpc_PrintGphStrXY(mostrar2,50,58);
-    cpc_PrintGphStrXY("PULSA X PARA SALIR;",5,142);
-	cpc_PrintGphStrXY("PULSA R PARA VOLVER AL MENU:",5,154);
+    cpc_PrintGphStrXY("PRESS X TO EXIT;",5,142);
+	cpc_PrintGphStrXY("PRESS R TO GO BACK TO THE MAIN MENU:",5,154);
 }
