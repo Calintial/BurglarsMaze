@@ -127,7 +127,7 @@ main(){
 
 				if(puntos == numMonedas){
 					cpc_ClrScr();
-					printYouWin();
+					printYouWin(puntos);
 					while(cpc_TestKey(8)!=1 && cpc_TestKey(7)!=1){}
 					cpc_ClrScr();
 					break;
