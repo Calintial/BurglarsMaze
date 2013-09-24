@@ -42,6 +42,7 @@ main(){
 	do
 	{
 		pintaInicio();
+		puntos = 0;
 		
 		if(cpc_TestKey(9)==1)
 		{
