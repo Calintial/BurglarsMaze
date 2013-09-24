@@ -62,6 +62,19 @@ main(){
 			sp1.Height = 1;
 			sp1.sp = ladron;
 
+			// ================ MIRAR ANTES DE DEBUGUEAR =============================
+
+			// si comentas toda la inicialización, funciona, muestra el personaje y el score,
+			// y cuando va a leer la matriz explota porque no está inicializada
+
+			// si solo comentas draw, crearEnemigo y updateSprite, no llega a funcionar, muestra una línea y peta
+
+			// si comentas el bucle principal completo, el mapa se dibuja correctamente, y aparece el enemigo, 
+			// con las letras del menú puestas por encima (porque no hace ClrScr)
+
+			// no sé qué puede ser, no veo que sea una instrucción concreta la que hace que pete,
+			// es la combinación de todas, algo raro está pasando a bajo nivel :S
+
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
