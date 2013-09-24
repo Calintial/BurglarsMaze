@@ -93,11 +93,12 @@ main(){
 							putBomb(sp1.pX, sp1.pY,matriz);
 						}
 
-						cont = 0;			
+						cont++;		
 					}
 					else
 					{
-						cont++;
+						cont = 0;
+						
 					}
 					
 					updateSprite(sp1);

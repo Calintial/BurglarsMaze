@@ -30,9 +30,9 @@ void pintaInicio(void)
 	setColor(0,168);
 	cpc_PrintGphStrXY("PRESS;E;TO;START;",5,130);
 	cpc_PrintGphStrXY("PRESS;X;TO;EXIT;",5,142);
-	cpc_PrintGphStrXY("PRESS;R;TO;REDEFINE KEYS:",5,154);
+	cpc_PrintGphStrXY("PRESS;R;TO;REDEFINE;KEYS:",5,154);
 
-	              
+	
 	if (cpc_TestKey(8)==1)
 	{ 
 		//Redefinir teclado
