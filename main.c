@@ -52,7 +52,8 @@ main(){
 			draw_tilemap(matriz);
 				crearEnemigo();	
 				updateSprite(sprite_enemigo);
-
+				crearEnemigo2();
+				updateSprite(sprite_enemigo2);
 			while(1){
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
@@ -62,6 +63,7 @@ main(){
 					{
 						ReadKeyboard();
 						movimientoEnemigo(matriz,sp1);
+						movimientoEnemigo2(matriz,sp1);
 						//Movimiento
 						if(IsKeyPressed(Key_W) && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2) sp1.pY--;
 						if(IsKeyPressed(Key_A) && matriz[sp1.pY][sp1.pX-1] != 1 && matriz[sp1.pY][sp1.pX-1] != 2) sp1.pX--;
@@ -83,6 +85,7 @@ main(){
 					}
 					
 					updateSprite(sp1);
+					updateSprite(sprite_enemigo2);
 					updateSprite(sprite_enemigo);
 					if(bomb_exist)
 					{
