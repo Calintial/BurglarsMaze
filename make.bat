@@ -1,2 +1,2 @@
-zcc +cpc TileMapConf.asm -create-app -make-app -O3 -unsigned -o main.bin main.c -lcpcrslib -lndos
+zcc +cpc -create-app -make-app -O3 -unsigned -o main.bin main.c -lcpcrslib -lndos
 CPCDiskXP -File main.bin -AddAmsdosHeader 6000 -AddToNewDsk main.dsk

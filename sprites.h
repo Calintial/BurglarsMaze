@@ -99,6 +99,7 @@ defb $30,$61
 defb $30,$61
 defb $30,$61
 defb $C3,$C3
+
 #endasm
 
 typedef struct

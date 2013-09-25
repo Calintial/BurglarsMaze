@@ -24,6 +24,9 @@ main(){
 
 	int cont;
 
+	int puntos = 0;
+	int estado = 0;
+
 	cpc_SetModo(0);
 
 	//cpc_SetColour();
@@ -45,12 +48,15 @@ main(){
 	// cpc_AssignKey(1, 0x4780);
 	do
 	{
-		pintaInicio();
+		pintaInicio(puntos,estado);
+
 		
 		if(cpc_TestKey(9)==1)
 		{
-			timeToUpdate = 2500;
+			timeToUpdate = 500;
 			cont = 0;
+			puntos = 0;
+			estado = 0;
 
 
 
@@ -62,19 +68,6 @@ main(){
 			sp1.Height = 1;
 			sp1.sp = ladron;
 
-			// ================ MIRAR ANTES DE DEBUGUEAR =============================
-
-			// si comentas toda la inicialización, funciona, muestra el personaje y el score,
-			// y cuando va a leer la matriz explota porque no está inicializada
-
-			// si solo comentas draw, crearEnemigo y updateSprite, no llega a funcionar, muestra una línea y peta
-
-			// si comentas el bucle principal completo, el mapa se dibuja correctamente, y aparece el enemigo, 
-			// con las letras del menú puestas por encima (porque no hace ClrScr)
-
-			// no sé qué puede ser, no veo que sea una instrucción concreta la que hace que pete,
-			// es la combinación de todas, algo raro está pasando a bajo nivel :S
-
 			cpc_ClrScr();
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
@@ -82,12 +75,12 @@ main(){
 			updateSprite(sprite_enemigo);
 
 			while(1){
-				int puntos = 0;
+				
 				int numMonedas = 76;
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
 					//timeToUpdate = 5500;
-					timeToUpdate = 2500;
+					timeToUpdate = 500;
 					printPuntos(puntos);
 					if(cont<40)
 					{
@@ -135,6 +128,7 @@ main(){
 								bomb_exist = 0;
 								explosion_exist = 0;
 								borrarExplosion(matriz);
+								estado = 2;
 			    				cpc_ClrScr();
 				      	 		break;
 					    	}
@@ -146,7 +140,7 @@ main(){
 
 				if(puntos == numMonedas){
 					cpc_ClrScr();
-					printYouWin(puntos);
+					estado = 1;
 					while(cpc_TestKey(8)!=1 && cpc_TestKey(7)!=1){}
 					cpc_ClrScr();
 					break;
