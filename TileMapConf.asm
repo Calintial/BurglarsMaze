@@ -19,7 +19,7 @@ XDEF mascara2
 XDEF mascara1
 
 ; VALORES QUE DEFINEN EL BUFFER Y LA PANTALLA
-defc posicion_inicial_area_visible = $c056		;Upper left screen addres
+defc posicion_inicial_area_visible = $c050		;Upper left screen addres
 defc posicion_inicial_superbuffer = $100	;Start of tile map buffer
 
 ;Tile Map dimensions:

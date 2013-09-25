@@ -1,9 +1,13 @@
-extern unsigned char rojo[];
 extern unsigned char muro[];
 extern unsigned char punto[];
 extern unsigned char borrar[];
+extern unsigned char ladron[];
+extern unsigned char ladronarriba[];
+extern unsigned char ladronder[];
+extern unsigned char ladronizq[];
 extern unsigned char cristal[];
 extern unsigned char pared[];
+
 #asm
 ._borrar
 defb 2,8
@@ -15,16 +19,6 @@ defb $00,$00
 defb $00,$00
 defb $00,$00
 defb $00,$00
-._rojo
-defb 2,8
-defb $44,$88
-defb $10,$20
-defb $45,$8A
-defb $CC,$CD
-defb $CE,$88
-defb $44,$88
-defb $50,$88
-defb $00,$A0
 ._muro
 defb 2,8
 defb $03,$03
@@ -39,12 +33,52 @@ defb $03,$03
 defb 2,8
 defb $00,$00
 defb $00,$00
-defb $45,$8A
-defb $45,$8A
-defb $45,$8A
+defb $40,$80
+defb $40,$80
+defb $40,$80
 defb $00,$00
 defb $00,$00
 defb $00,$00
+._ladron
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $90,$60
+defb $C0,$C0
+defb $CC,$CC
+defb $C4,$C8
+defb $CC,$CC
+defb $82,$41
+._ladronder
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $C0,$30
+defb $C0,$C0
+defb $CC,$CC
+defb $CC,$C0
+defb $CC,$CC
+defb $C3,$C3
+._ladronizq
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $60,$C0
+defb $C0,$C0
+defb $CC,$CC
+defb $C0,$CC
+defb $CC,$CC
+defb $C3,$C3
+._ladronarriba
+defb 2,8
+defb $04,$08
+defb $0C,$0C
+defb $C0,$C0
+defb $C0,$C0
+defb $CC,$CC
+defb $CC,$CC
+defb $CC,$CC
+defb $C3,$C3
 ._cristal
 defb 2,8
 defb $0C,$0C
@@ -65,6 +99,7 @@ defb $30,$61
 defb $30,$61
 defb $30,$61
 defb $C3,$C3
+
 #endasm
 
 typedef struct
