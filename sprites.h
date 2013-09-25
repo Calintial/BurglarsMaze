@@ -33,9 +33,9 @@ defb $03,$03
 defb 2,8
 defb $00,$00
 defb $00,$00
-defb $45,$8A
-defb $45,$8A
-defb $45,$8A
+defb $40,$80
+defb $40,$80
+defb $40,$80
 defb $00,$00
 defb $00,$00
 defb $00,$00
