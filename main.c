@@ -73,8 +73,8 @@ main(){
 			draw_tilemap(matriz);
 
 				crearEnemigo();	
-				updateSprite(sprite_enemigo);
-				updateSprite(sprite_enemigo2);
+				updateSprite(sprite_enemigo,matriz);
+				updateSprite(sprite_enemigo2,matriz);
 
 			while(1){
 				
@@ -113,9 +113,9 @@ main(){
 						
 					}
 					
-					updateSprite(sp1);
-					updateSprite(sprite_enemigo);
-					updateSprite(sprite_enemigo2);
+					updateSprite(sp1,matriz);
+					updateSprite(sprite_enemigo,matriz);
+					updateSprite(sprite_enemigo2,matriz);
 
 	                if(matriz[sp1.pY][sp1.pX]==3)
 					{

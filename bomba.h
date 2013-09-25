@@ -130,7 +130,7 @@ void updateBomb(int* matriz[])
 
 	if(!explosion_exist)
 	{
-		updateSprite(sprite_bomba);
+		updateSprite(sprite_bomba,matriz);
 	}
 	else
 	{

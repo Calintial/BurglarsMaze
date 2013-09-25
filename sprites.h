@@ -134,9 +134,10 @@ void putTile(int numSprite, int x, int y)
 	else if(numSprite == 3) cpc_PutSprite(punto, coord);
 }
 
-void updateSprite(mysprite* sprite)
+void updateSprite(mysprite* sprite, int* matriz[])
 {
-	if(sprite->pXold!=sprite->pX || sprite->pYold!=sprite->pY) putTile(0,sprite->pXold*2,sprite->pYold*8); //Si cambia la posición del sprite, se restaura la posición
+	if(sprite->pXold!=sprite->pX || sprite->pYold!=sprite->pY) 
+		putTile(matriz[sprite->pYold][sprite->pXold],sprite->pXold*2,sprite->pYold*8); //Si cambia la posición del sprite, se restaura la posición
 	putSprite(sprite,sprite->pX*2,sprite->pY*8); //Pone el sprite en la nueva posicion
 	sprite->pXold = sprite->pX;
 	sprite->pYold = sprite->pY;
