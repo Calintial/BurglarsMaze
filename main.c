@@ -74,7 +74,6 @@ main(){
 
 				crearEnemigo();	
 				updateSprite(sprite_enemigo);
-				crearEnemigo2();
 				updateSprite(sprite_enemigo2);
 
 			while(1){
@@ -90,8 +89,8 @@ main(){
 					if(cont<40)
 					{
 						ReadKeyboard();
-						movimientoEnemigo(matriz,sp1);
-						movimientoEnemigo2(matriz,sp1);
+						movimientoEnemigo(sprite_enemigo,matriz,sp1);
+						movimientoEnemigo(sprite_enemigo2,matriz,sp1);
 						//Movimiento
 
 						if(cpc_TestKey(0)==1 && matriz[sp1.pY-1][sp1.pX] != 1 && matriz[sp1.pY-1][sp1.pX] != 2){sp1.pY--; sp1.sp=ladron;} 
@@ -115,8 +114,8 @@ main(){
 					}
 					
 					updateSprite(sp1);
-					updateSprite(sprite_enemigo2);
 					updateSprite(sprite_enemigo);
+					updateSprite(sprite_enemigo2);
 
 	                if(matriz[sp1.pY][sp1.pX]==3)
 					{
@@ -148,8 +147,6 @@ main(){
 				if(puntos == numMonedas){
 					cpc_ClrScr();
 					estado = 1;
-					while(cpc_TestKey(8)!=1 && cpc_TestKey(7)!=1){}
-					cpc_ClrScr();
 					break;
 				}
 			}			
