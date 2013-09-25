@@ -72,9 +72,10 @@ main(){
 			init_tilemap(matriz);
 			draw_tilemap(matriz);
 
-				crearEnemigo();	
-				updateSprite(sprite_enemigo,matriz);
-				updateSprite(sprite_enemigo2,matriz);
+			crearEnemigo();	
+			updateSprite(sprite_enemigo,matriz);
+			updateSprite(sprite_enemigo2,matriz);
+			initBomb();
 
 			while(1){
 				
@@ -141,12 +142,12 @@ main(){
 						}
 
 					}
-
+/*
 					if(RectangleColission(sp1,sprite_enemigo) || RectangleColission(sp1,sprite_enemigo2)){
 						cpc_ClrScr();
 						estado = 2;
 						break;
-					}
+					}*/
 
 				}
 

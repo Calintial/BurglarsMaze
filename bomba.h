@@ -56,6 +56,9 @@ void initBomb(void)
 	sprite_bomba.Width = 1;
 	sprite_bomba.Height = 1;
 	sprite_bomba.sp = bomba;
+	explosion_exist = 0;
+	bomb_exist = 0;
+	bomb_time = 0;
 }
 
 void putBomb(char x, char y,int* matriz[])
