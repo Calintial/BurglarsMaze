@@ -142,6 +142,12 @@ main(){
 
 					}
 
+					if(RectangleColission(sp1,sprite_enemigo) || RectangleColission(sp1,sprite_enemigo2)){
+						cpc_ClrScr();
+						estado = 2;
+						break;
+					}
+
 				}
 
 				if(puntos == numMonedas){
