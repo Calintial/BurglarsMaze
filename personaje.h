@@ -243,17 +243,22 @@ void moverEnemigo(int * matriz[],int *mov[],mysprite personaje){
   /* numero(personaje->pX);
       cpc_PrintGphStrXY(mostrar,100,0);*/
    if(personaje->pX==sprite_enemigo.pX){
-      if(personaje->pY>sprite_enemigo.pY){
+      if(personaje->pY>sprite_enemigo.pY && mov[1]!=0){
             return 1;
       }
-      return 0;
+      else if(mov[0]!=0){
+       return 0;
+    }
    }
    if(personaje->pY==sprite_enemigo.pY){
-      if(personaje->pX>sprite_enemigo.pX){
+      if(personaje->pX>sprite_enemigo.pX && mov[2]!=0){
          return 2;
       }
+      else if(mov[3]!=0){
       return 3;
+    }
    }
+
    return mejor(mov);
 }
 

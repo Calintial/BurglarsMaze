@@ -56,7 +56,7 @@ main(){
 			while(1){
 				timeToUpdate--;
 				if(timeToUpdate<=0) {
-					timeToUpdate = 5500;
+					timeToUpdate =10000;
 					
 					if(cont<40)
 					{
