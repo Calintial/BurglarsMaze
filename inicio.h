@@ -39,7 +39,7 @@ void pintaInicio(int puntos,int estado)
 	{
 		texto1 = "CALINTIAL;TEAM";
 		texto2 = "PRESENTS";
-		texto3 = "TITLE;GAME";		
+		texto3 = "THE;BURGLAR;MAZE";		
 	}
 
 	cpc_PrintGphStrXY(texto1,11,38);
