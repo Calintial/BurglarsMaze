@@ -60,10 +60,10 @@ main(){
 
 
 
-			sp1.pX = 21;
-			sp1.pY = 9;
-			sp1.pXold = 21;
-			sp1.pYold = 9;
+			sp1.pX = 1;
+			sp1.pY = 3;
+			sp1.pXold = 1;
+			sp1.pYold = 3;
 			sp1.Width = 1;
 			sp1.Height = 1;
 			sp1.sp = ladron;
